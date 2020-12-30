@@ -16,6 +16,9 @@
 		E2CBC334259CD8D200B92BA4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E2CBC332259CD8D200B92BA4 /* Main.storyboard */; };
 		E2CBC336259CD8D300B92BA4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E2CBC335259CD8D300B92BA4 /* Assets.xcassets */; };
 		E2CBC339259CD8D300B92BA4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E2CBC337259CD8D300B92BA4 /* LaunchScreen.storyboard */; };
+		E2CBC348259CD93800B92BA4 /* IGStoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2CBC347259CD93800B92BA4 /* IGStoryView.swift */; };
+		E2CBC35A259CE21700B92BA4 /* IGStoryUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2CBC2E9259CD73700B92BA4 /* IGStoryUI.framework */; };
+		E2CBC35B259CE21700B92BA4 /* IGStoryUI.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E2CBC2E9259CD73700B92BA4 /* IGStoryUI.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -26,7 +29,28 @@
 			remoteGlobalIDString = E2CBC2E8259CD73700B92BA4;
 			remoteInfo = IGStoryUI;
 		};
+		E2CBC352259CE1D300B92BA4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E2CBC2E0259CD73700B92BA4 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E2CBC2E8259CD73700B92BA4;
+			remoteInfo = IGStoryUI;
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		E2CBC35C259CE21700B92BA4 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				E2CBC35B259CE21700B92BA4 /* IGStoryUI.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		E2CBC2E9259CD73700B92BA4 /* IGStoryUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = IGStoryUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -43,6 +67,7 @@
 		E2CBC335259CD8D300B92BA4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E2CBC338259CD8D300B92BA4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E2CBC33A259CD8D300B92BA4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E2CBC347259CD93800B92BA4 /* IGStoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IGStoryView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,6 +90,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E2CBC35A259CE21700B92BA4 /* IGStoryUI.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -78,6 +104,7 @@
 				E2CBC2F6259CD73700B92BA4 /* IGStoryUITests */,
 				E2CBC32B259CD8D200B92BA4 /* ExampleApp */,
 				E2CBC2EA259CD73700B92BA4 /* Products */,
+				E2CBC34F259CE1D300B92BA4 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -94,6 +121,7 @@
 		E2CBC2EB259CD73700B92BA4 /* IGStoryUI */ = {
 			isa = PBXGroup;
 			children = (
+				E2CBC347259CD93800B92BA4 /* IGStoryView.swift */,
 				E2CBC2EC259CD73700B92BA4 /* IGStoryUI.h */,
 				E2CBC2ED259CD73700B92BA4 /* Info.plist */,
 			);
@@ -121,6 +149,13 @@
 				E2CBC33A259CD8D300B92BA4 /* Info.plist */,
 			);
 			path = ExampleApp;
+			sourceTree = "<group>";
+		};
+		E2CBC34F259CE1D300B92BA4 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -180,10 +215,12 @@
 				E2CBC326259CD8D200B92BA4 /* Sources */,
 				E2CBC327259CD8D200B92BA4 /* Frameworks */,
 				E2CBC328259CD8D200B92BA4 /* Resources */,
+				E2CBC35C259CE21700B92BA4 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				E2CBC353259CE1D300B92BA4 /* PBXTargetDependency */,
 			);
 			name = ExampleApp;
 			productName = ExampleApp;
@@ -201,6 +238,7 @@
 				TargetAttributes = {
 					E2CBC2E8259CD73700B92BA4 = {
 						CreatedOnToolsVersion = 12.3;
+						LastSwiftMigration = 1230;
 					};
 					E2CBC2F1259CD73700B92BA4 = {
 						CreatedOnToolsVersion = 12.3;
@@ -262,6 +300,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E2CBC348259CD93800B92BA4 /* IGStoryView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -290,6 +329,11 @@
 			isa = PBXTargetDependency;
 			target = E2CBC2E8259CD73700B92BA4 /* IGStoryUI */;
 			targetProxy = E2CBC2F4259CD73700B92BA4 /* PBXContainerItemProxy */;
+		};
+		E2CBC353259CE1D300B92BA4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E2CBC2E8259CD73700B92BA4 /* IGStoryUI */;
+			targetProxy = E2CBC352259CE1D300B92BA4 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -438,6 +482,7 @@
 		E2CBC2FE259CD73700B92BA4 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 7978CN5FM3;
@@ -454,6 +499,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = muta.IGStoryUI;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -462,6 +508,7 @@
 		E2CBC2FF259CD73700B92BA4 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 7978CN5FM3;
@@ -486,6 +533,7 @@
 		E2CBC301259CD73700B92BA4 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 7978CN5FM3;
 				INFOPLIST_FILE = IGStoryUITests/Info.plist;
@@ -504,6 +552,7 @@
 		E2CBC302259CD73700B92BA4 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 7978CN5FM3;
 				INFOPLIST_FILE = IGStoryUITests/Info.plist;
