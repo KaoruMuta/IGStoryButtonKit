@@ -7,8 +7,7 @@
 
 import UIKit
 
-@IBDesignable
-open class IGStoryView: UIView {
+@IBDesignable open class IGStoryView: UIView {
     
     override public init(frame: CGRect) {
         super.init(frame: frame)
@@ -21,6 +20,6 @@ open class IGStoryView: UIView {
     }
     
     private func configure() {
-        
+        layer.cornerRadius = layer.frame.width / 2.0
     }
 }
