@@ -9,6 +9,8 @@ import UIKit
 
 @IBDesignable open class IGStoryView: UIView {
     
+    @IBInspectable open var borderWidth: CGFloat = 5
+    
     override public init(frame: CGRect) {
         super.init(frame: frame)
         configure()
@@ -21,5 +23,7 @@ import UIKit
     
     private func configure() {
         layer.cornerRadius = layer.frame.width / 2.0
+        layer.borderWidth = borderWidth
+        layer.borderColor = .init(gray: 0.0, alpha: 0.0)
     }
 }
