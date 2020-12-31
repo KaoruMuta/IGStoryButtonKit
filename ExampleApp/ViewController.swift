@@ -15,7 +15,8 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        storyView.backgroundColor = .blue
+        storyView.backgroundColor = .clear
+        storyView.image = UIImage(named: "ramen")
     }
 
 
