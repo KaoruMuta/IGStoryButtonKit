@@ -18,7 +18,14 @@ class ViewController: UIViewController {
         storyView.backgroundColor = .clear
         storyView.image = UIImage(named: "ramen")
     }
-
-
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        storyView.startLoading()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 5) { [weak self] in
+            self?.storyView.stopLoading()
+        }
+    }
 }
 
