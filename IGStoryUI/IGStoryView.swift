@@ -11,20 +11,35 @@ import UIKit
     
     @IBInspectable open var borderWidth: CGFloat = 5
     
-    
-    private var contentView: UIImageView? {
+    private var contentView: UIImageView! {
         didSet {
-            guard let contentView = contentView else { return }
             contentView.layer.cornerRadius = contentView.frame.width / 2.0
             contentView.clipsToBounds = true
         }
     }
     
-    open var image: UIImage? {
+    private var indicatorLayer: CAGradientLayer! {
         didSet {
-            contentView?.image = image
+            indicatorLayer.colors = [UIColor.red.cgColor, UIColor.orange.cgColor]
+            indicatorLayer.frame = CGRect(x: -borderWidth, y: -borderWidth, width: frame.width + borderWidth * 2, height: frame.height + borderWidth * 2)
+            indicatorLayer.cornerRadius = indicatorLayer.frame.width / 2.0
         }
     }
+    
+    open var image: UIImage? {
+        didSet {
+            contentView.image = image
+        }
+    }
+    
+    private var rotateAnimation: CABasicAnimation = {
+        let animation = CABasicAnimation(keyPath: KeyPath.rotation)
+        animation.fromValue = 0
+        animation.toValue = 2 * Double.pi
+        animation.speed = 0.0
+        animation.repeatCount = .infinity
+        return animation
+    }()
     
     override public init(frame: CGRect) {
         super.init(frame: frame)
@@ -44,26 +59,26 @@ import UIKit
     private func configure() {
         // contentView configuration
         contentView = UIImageView(frame: CGRect(x: borderWidth, y: borderWidth, width: frame.width - borderWidth * 2, height: frame.height - borderWidth * 2))
-        guard let contentView = contentView else { return }
+        
+        // indicator configuration
+        indicatorLayer = CAGradientLayer()
         
         // IGStoryView configuration
         layer.cornerRadius = layer.frame.width / 2.0
         layer.borderWidth = borderWidth
         layer.borderColor = UIColor.border.cgColor
-        
-        // indicator configuration
-        let indicatorLayer = CAGradientLayer()
-        indicatorLayer.type = .axial
-        indicatorLayer.colors = [UIColor.red.cgColor, UIColor.orange.cgColor]
-        indicatorLayer.frame = CGRect(x: -borderWidth, y: -borderWidth, width: frame.width + borderWidth * 2, height: frame.height + borderWidth * 2)
-        indicatorLayer.cornerRadius = indicatorLayer.frame.width / 2.0
-        
         layer.addSublayer(indicatorLayer)
         addSubview(contentView)
-//        indicatorLayer.fillColor = UIColor.clear.cgColor
-//        indicatorLayer.strokeColor = .red
-//        indicatorLayer.lineWidth = borderWidth
-//        indicatorLayer.path = .init(roundedRect: bounds, cornerWidth: layer.frame.width / 2.0, cornerHeight: layer.frame.width / 2.0, transform: nil)
+    }
+}
 
+public extension IGStoryView {
+    func startLoading(speed: Float = 0.2) {
+        rotateAnimation.speed = speed
+        indicatorLayer.add(animation: rotateAnimation)
+    }
+    
+    func stopLoading() {
+        indicatorLayer.removeAllAnimations()
     }
 }
