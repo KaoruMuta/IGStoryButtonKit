@@ -73,12 +73,12 @@ import UIKit
 }
 
 public extension IGStoryView {
-    func startLoading(speed: Float = 0.2) {
+    func startAnimating(speed: Float = 0.2) {
         rotateAnimation.speed = speed
         indicatorLayer.add(animation: rotateAnimation)
     }
     
-    func stopLoading() {
+    func stopAnimating() {
         indicatorLayer.removeAllAnimations()
     }
 }
