@@ -22,9 +22,9 @@ class ViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        storyView.startLoading()
+        storyView.startAnimating()
         DispatchQueue.main.asyncAfter(deadline: .now() + 5) { [weak self] in
-            self?.storyView.stopLoading()
+            self?.storyView.stopAnimating()
         }
     }
 }
