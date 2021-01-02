@@ -11,6 +11,12 @@ import UIKit
     
     @IBInspectable open var borderWidth: CGFloat = 5
     
+    open var image: UIImage? {
+        didSet {
+            contentView.image = image
+        }
+    }
+    
     private var contentView: UIImageView! {
         didSet {
             contentView.layer.cornerRadius = contentView.frame.width / 2.0
@@ -26,13 +32,7 @@ import UIKit
         }
     }
     
-    open var image: UIImage? {
-        didSet {
-            contentView.image = image
-        }
-    }
-    
-    private var rotateAnimation: CABasicAnimation = {
+    private let rotateAnimation: CABasicAnimation = {
         let animation = CABasicAnimation(keyPath: KeyPath.rotation)
         animation.fromValue = 0
         animation.toValue = 2 * Double.pi
