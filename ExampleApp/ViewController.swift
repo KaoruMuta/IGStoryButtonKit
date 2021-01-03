@@ -18,19 +18,21 @@ class ViewController: UIViewController {
         storyButton.backgroundColor = .clear
         storyButton.colors = [.yellow, .cyan, .black]
         storyButton.image = UIImage(named: "ramen")
+        storyButton.addTarget(self, action: #selector(didTapped), for: .touchUpInside)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-        storyButton.startAnimating()
-        DispatchQueue.main.asyncAfter(deadline: .now() + 5) { [weak self] in
-            self?.storyButton.stopAnimating()
-        }
     }
     
     @objc private func didTapped() {
         print("didTapped")
+        
+        storyButton.startAnimating()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) { [weak self] in
+            self?.storyButton.stopAnimating()
+            self?.storyButton.isWatched.toggle()
+        }
     }
 }
 
