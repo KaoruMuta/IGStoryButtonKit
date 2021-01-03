@@ -10,23 +10,28 @@ import IGStoryUI
 
 class ViewController: UIViewController {
     
-    @IBOutlet private weak var storyView: IGStoryView!
+    @IBOutlet private weak var storyButton: IGStoryButton!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        storyView.backgroundColor = .clear
-        storyView.colors = [.yellow, .cyan, .black]
-        storyView.image = UIImage(named: "ramen")
+        storyButton.backgroundColor = .clear
+        storyButton.colors = [.yellow, .cyan, .black]
+        storyButton.image = UIImage(named: "ramen")
+        storyButton.addTarget(self, action: #selector(didTapped), for: .touchUpInside)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        storyView.startAnimating()
+        storyButton.startAnimating()
         DispatchQueue.main.asyncAfter(deadline: .now() + 5) { [weak self] in
-            self?.storyView.stopAnimating()
+            self?.storyButton.stopAnimating()
         }
+    }
+    
+    @objc private func didTapped() {
+        print("didTapped")
     }
 }
 
