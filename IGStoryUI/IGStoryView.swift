@@ -53,12 +53,12 @@ import UIKit
     
     public init(frame: CGRect, image: UIImage? = nil, colors: [UIColor] = [.red, .orange]) {
         super.init(frame: frame)
-        configure(with: .script)
+        configure(with: .script, image: image, colors: colors)
     }
     
     required public init?(coder: NSCoder) {
         super.init(coder: coder)
-        configure(with: .interfaceBuilder)
+        configure()
     }
     
     override public func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
@@ -66,14 +66,15 @@ import UIKit
         layer.borderColor = UIColor.border.cgColor
     }
     
-    private func configure(with type: InitializeType) {
+    private func configure(with type: InitializeType = .interfaceBuilder, image: UIImage? = nil, colors: [UIColor] = [.red, .orange]) {
         // contentView configuration
         contentView = UIImageView(frame: CGRect(x: borderWidth, y: borderWidth, width: frame.width - borderWidth * 2, height: frame.height - borderWidth * 2))
+        
         // indicator configuration
         indicatorLayer = CAGradientLayer()
         
-        // additional configuration (reason: didSet is not called in initializer)
         if type == .script {
+            // additional configuration (reason: didSet is not called in initializer)
             contentView.layer.cornerRadius = contentView.frame.width / 2.0
             contentView.clipsToBounds = true
             contentView.image = image
