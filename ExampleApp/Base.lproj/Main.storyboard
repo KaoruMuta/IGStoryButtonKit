@@ -16,29 +16,29 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="luc-g1-dtW" customClass="IGStoryView" customModule="IGStoryUI">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iMT-WT-NhL" customClass="IGStoryView" customModule="IGStoryUI">
                                 <rect key="frame" x="157" y="398" width="100" height="100"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="100" id="Kfx-uw-djq"/>
-                                    <constraint firstAttribute="height" constant="100" id="tZN-Z6-xbv"/>
+                                    <constraint firstAttribute="width" constant="100" id="EbL-Ku-I4Q"/>
+                                    <constraint firstAttribute="height" constant="100" id="mWX-Wh-Ddg"/>
                                 </constraints>
                             </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="luc-g1-dtW" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="6hm-Nf-sz9"/>
-                            <constraint firstItem="luc-g1-dtW" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Saa-RI-uUc"/>
+                            <constraint firstItem="iMT-WT-NhL" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="9UD-oe-r3Q"/>
+                            <constraint firstItem="iMT-WT-NhL" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="tlp-my-OQD"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="storyView" destination="luc-g1-dtW" id="97f-NM-hEJ"/>
+                        <outlet property="storyView" destination="iMT-WT-NhL" id="Xbh-Mr-VPb"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-197.10144927536234" y="93.75"/>
+            <point key="canvasLocation" x="-354" y="94"/>
         </scene>
     </scenes>
     <resources>
