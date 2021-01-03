@@ -1,5 +1,5 @@
 //
-//  IGStoryView.swift
+//  IGStoryButton.swift
 //  IGStoryUI
 //
 //  Created by k_muta on 2020/12/31.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-@IBDesignable open class IGStoryView: UIView {
+@IBDesignable open class IGStoryButton: UIButton {
     
     private enum InitializeType {
         case script
@@ -96,7 +96,7 @@ import UIKit
     }
 }
 
-public extension IGStoryView {
+public extension IGStoryButton {
     func startAnimating(speed: Float = 0.2) {
         rotateAnimation.speed = speed
         indicatorLayer.add(animation: rotateAnimation)
