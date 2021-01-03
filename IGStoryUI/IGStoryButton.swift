@@ -13,6 +13,13 @@ import UIKit
         case script
         case interfaceBuilder
     }
+    
+    public enum DisplayType {
+        case seen
+        case unseen
+        case status
+        case none
+    }
 
     private let borderWidth: CGFloat = 3
     
@@ -28,9 +35,11 @@ import UIKit
         }
     }
     
-    open var isWatched: Bool = false {
+    open var statusView: StatusView!
+    
+    open var type: DisplayType = .none {
         didSet {
-            indicatorLayer.colors = isWatched ? [UIColor.black.cgColor, UIColor.white.cgColor] : colors.map { $0.cgColor }
+            update(by: type)
         }
     }
     
@@ -73,18 +82,23 @@ import UIKit
     
     override public func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
-        layer.borderColor = UIColor.border.cgColor
+        contentView.layer.borderColor = UIColor.border.cgColor
     }
     
     private func configure(with type: InitializeType = .interfaceBuilder, image: UIImage? = nil, colors: [UIColor] = [.red, .orange]) {
         // contentView configuration
-        contentView = UIImageView(frame: CGRect(x: borderWidth, y: borderWidth, width: frame.width - borderWidth * 2, height: frame.height - borderWidth * 2))
+        contentView = .init(frame: CGRect(x: borderWidth, y: borderWidth, width: frame.width - borderWidth * 2, height: frame.height - borderWidth * 2))
+        
+        // statusView configuration
+        statusView = .init(frame: CGRect(x: contentView.frame.width * 3.0 / 4.0, y: contentView.frame.width * 3.0 / 4.0, width: contentView.frame.width / 3.0, height: contentView.frame.width / 3.0), image: UIImage(named: "ramen"))
         
         // layer configuration
-        indicatorLayer = CAGradientLayer()
+        indicatorLayer = .init()
         let contentViewLayer: CAShapeLayer = {
             let layer = CAShapeLayer()
             layer.frame = contentView.frame
+            layer.borderWidth = borderWidth
+            layer.borderColor = UIColor.border.cgColor
             layer.cornerRadius = contentView.frame.width / 2.0
             layer.backgroundColor = UIColor.black.cgColor
             return layer
@@ -105,28 +119,12 @@ import UIKit
         
         // IGStoryView configuration
         layer.cornerRadius = layer.frame.width / 2.0
-        layer.borderWidth = borderWidth
-        layer.borderColor = UIColor.border.cgColor
+        contentView.layer.borderWidth = borderWidth
+        contentView.layer.borderColor = UIColor.border.cgColor
         layer.addSublayer(indicatorLayer)
         layer.addSublayer(contentViewLayer)
         addSubview(contentView)
         addGestureRecognizer(longPressGestureRecognizer)
-    }
-    
-    @objc private func didLongPressed(sender: UILongPressGestureRecognizer) {
-        if sender.state == .began {
-            let originalTransform = transform
-            let scaledTransform = originalTransform.scaledBy(x: Parameter.scale, y: Parameter.scale)
-            UIView.animate(withDuration: Parameter.duration, animations: { [weak self] in
-                self?.transform = scaledTransform
-            }) { [weak self] _ in
-                guard let originalTransform = self?.transform else { return }
-                let scaledTransform = originalTransform.scaledBy(x: Parameter.zoom, y: Parameter.zoom)
-                UIView.animate(withDuration: Parameter.duration, animations: { [weak self] in
-                    self?.transform = scaledTransform
-                })
-            }
-        }
     }
 }
 
@@ -142,5 +140,38 @@ public extension IGStoryButton {
     func stopAnimating() {
         indicatorLayer.removeAllAnimations()
         contentView.alpha = 1.0
+    }
+}
+
+private extension IGStoryButton {
+    @objc func didLongPressed(sender: UILongPressGestureRecognizer) {
+        if sender.state == .began {
+            let originalTransform = transform
+            let scaledTransform = originalTransform.scaledBy(x: Parameter.scale, y: Parameter.scale)
+            UIView.animate(withDuration: Parameter.duration, animations: { [weak self] in
+                self?.transform = scaledTransform
+            }) { [weak self] _ in
+                guard let originalTransform = self?.transform else { return }
+                let scaledTransform = originalTransform.scaledBy(x: Parameter.zoom, y: Parameter.zoom)
+                UIView.animate(withDuration: Parameter.duration, animations: { [weak self] in
+                    self?.transform = scaledTransform
+                })
+            }
+        }
+    }
+    
+    func update(by type: DisplayType) {
+        switch type {
+        case .seen:
+            indicatorLayer.colors = [UIColor.black.cgColor, UIColor.white.cgColor]
+        case .unseen:
+            indicatorLayer.colors = colors.map { $0.cgColor }
+        case .status:
+            indicatorLayer.isHidden = true
+            statusView.isHidden = false
+        case .none:
+            indicatorLayer.isHidden = false
+            statusView.isHidden = true
+        }
     }
 }
