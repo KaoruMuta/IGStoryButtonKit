@@ -8,12 +8,18 @@
 import UIKit
 
 @IBDesignable open class IGStoryView: UIView {
-    
-    @IBInspectable open var borderWidth: CGFloat = 5
+
+    private let borderWidth: CGFloat = 3
     
     open var image: UIImage? {
         didSet {
             contentView.image = image
+        }
+    }
+    
+    open var colors: [UIColor] = [.red, .orange] {
+        didSet {
+            indicatorLayer.colors = colors.map { $0.cgColor }
         }
     }
     
@@ -26,7 +32,6 @@ import UIKit
     
     private var indicatorLayer: CAGradientLayer! {
         didSet {
-            indicatorLayer.colors = [UIColor.red.cgColor, UIColor.orange.cgColor]
             indicatorLayer.frame = CGRect(x: -borderWidth, y: -borderWidth, width: frame.width + borderWidth * 2, height: frame.height + borderWidth * 2)
             indicatorLayer.cornerRadius = indicatorLayer.frame.width / 2.0
         }
@@ -46,7 +51,7 @@ import UIKit
         configure()
     }
     
-    public required init?(coder: NSCoder) {
+    required public init?(coder: NSCoder) {
         super.init(coder: coder)
         configure()
     }

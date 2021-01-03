@@ -16,6 +16,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         storyView.backgroundColor = .clear
+        storyView.colors = [.yellow, .cyan, .black]
         storyView.image = UIImage(named: "ramen")
     }
     
