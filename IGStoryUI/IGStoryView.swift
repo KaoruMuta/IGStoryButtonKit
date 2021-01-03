@@ -56,6 +56,10 @@ import UIKit
         configure(with: .script, image: image, colors: colors)
     }
     
+    override public init(frame: CGRect) {
+        super.init(frame: frame)
+    }
+    
     required public init?(coder: NSCoder) {
         super.init(coder: coder)
         configure()
