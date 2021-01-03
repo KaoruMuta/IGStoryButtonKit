@@ -18,6 +18,7 @@ class ViewController: UIViewController {
         storyButton.backgroundColor = .clear
         storyButton.colors = [.yellow, .cyan, .black]
         storyButton.image = UIImage(named: "ramen")
+        storyButton.type = .unseen
         storyButton.addTarget(self, action: #selector(didTapped), for: .touchUpInside)
     }
     
@@ -31,7 +32,7 @@ class ViewController: UIViewController {
         storyButton.startAnimating()
         DispatchQueue.main.asyncAfter(deadline: .now() + 2) { [weak self] in
             self?.storyButton.stopAnimating()
-            self?.storyButton.isWatched.toggle()
+            self?.storyButton.type = .seen
         }
     }
 }
