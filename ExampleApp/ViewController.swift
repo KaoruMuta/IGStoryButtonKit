@@ -18,7 +18,6 @@ class ViewController: UIViewController {
         storyButton.backgroundColor = .clear
         storyButton.colors = [.yellow, .cyan, .black]
         storyButton.image = UIImage(named: "ramen")
-        storyButton.addTarget(self, action: #selector(didTapped), for: .touchUpInside)
     }
     
     override func viewWillAppear(_ animated: Bool) {
