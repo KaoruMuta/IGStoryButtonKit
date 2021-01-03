@@ -28,6 +28,12 @@ import UIKit
         }
     }
     
+    open var isWatched: Bool = false {
+        didSet {
+            indicatorLayer.colors = isWatched ? [UIColor.black.cgColor, UIColor.white.cgColor] : colors.map { $0.cgColor }
+        }
+    }
+    
     private var contentView: UIImageView! {
         didSet {
             contentView.layer.cornerRadius = contentView.frame.width / 2.0
