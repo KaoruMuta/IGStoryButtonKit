@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E20FF10C25A18D59002E39FA /* Const.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20FF10A25A18D59002E39FA /* Const.swift */; };
+		E20FF10D25A18D59002E39FA /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20FF10B25A18D59002E39FA /* Extensions.swift */; };
 		E2CBC2F3259CD73700B92BA4 /* IGStoryUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2CBC2E9259CD73700B92BA4 /* IGStoryUI.framework */; };
 		E2CBC2F8259CD73700B92BA4 /* IGStoryUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2CBC2F7259CD73700B92BA4 /* IGStoryUITests.swift */; };
 		E2CBC2FA259CD73700B92BA4 /* IGStoryUI.h in Headers */ = {isa = PBXBuildFile; fileRef = E2CBC2EC259CD73700B92BA4 /* IGStoryUI.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -20,9 +22,6 @@
 		E2CBC35A259CE21700B92BA4 /* IGStoryUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2CBC2E9259CD73700B92BA4 /* IGStoryUI.framework */; };
 		E2CBC35B259CE21700B92BA4 /* IGStoryUI.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E2CBC2E9259CD73700B92BA4 /* IGStoryUI.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E2CBC365259E4A9500B92BA4 /* ramen.png in Resources */ = {isa = PBXBuildFile; fileRef = E2CBC364259E4A9500B92BA4 /* ramen.png */; };
-		E2CBC378259EEE9A00B92BA4 /* UIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2CBC377259EEE9A00B92BA4 /* UIColor+.swift */; };
-		E2CBC380259F0AA700B92BA4 /* CALayer+.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2CBC37F259F0AA700B92BA4 /* CALayer+.swift */; };
-		E2CBC385259F300700B92BA4 /* Const.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2CBC384259F300700B92BA4 /* Const.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +56,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		E20FF10A25A18D59002E39FA /* Const.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Const.swift; sourceTree = "<group>"; };
+		E20FF10B25A18D59002E39FA /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		E2CBC2E9259CD73700B92BA4 /* IGStoryUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = IGStoryUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E2CBC2EC259CD73700B92BA4 /* IGStoryUI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IGStoryUI.h; sourceTree = "<group>"; };
 		E2CBC2ED259CD73700B92BA4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -73,9 +74,6 @@
 		E2CBC33A259CD8D300B92BA4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E2CBC347259CD93800B92BA4 /* IGStoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IGStoryView.swift; sourceTree = "<group>"; };
 		E2CBC364259E4A9500B92BA4 /* ramen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ramen.png; sourceTree = "<group>"; };
-		E2CBC377259EEE9A00B92BA4 /* UIColor+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+.swift"; sourceTree = "<group>"; };
-		E2CBC37F259F0AA700B92BA4 /* CALayer+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CALayer+.swift"; sourceTree = "<group>"; };
-		E2CBC384259F300700B92BA4 /* Const.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Const.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -129,8 +127,8 @@
 		E2CBC2EB259CD73700B92BA4 /* IGStoryUI */ = {
 			isa = PBXGroup;
 			children = (
-				E2CBC383259F2FFC00B92BA4 /* Constant */,
-				E2CBC370259EDC4300B92BA4 /* Extension */,
+				E20FF10A25A18D59002E39FA /* Const.swift */,
+				E20FF10B25A18D59002E39FA /* Extensions.swift */,
 				E2CBC347259CD93800B92BA4 /* IGStoryView.swift */,
 				E2CBC2EC259CD73700B92BA4 /* IGStoryUI.h */,
 				E2CBC2ED259CD73700B92BA4 /* Info.plist */,
@@ -175,23 +173,6 @@
 				E2CBC364259E4A9500B92BA4 /* ramen.png */,
 			);
 			path = Resource;
-			sourceTree = "<group>";
-		};
-		E2CBC370259EDC4300B92BA4 /* Extension */ = {
-			isa = PBXGroup;
-			children = (
-				E2CBC377259EEE9A00B92BA4 /* UIColor+.swift */,
-				E2CBC37F259F0AA700B92BA4 /* CALayer+.swift */,
-			);
-			path = Extension;
-			sourceTree = "<group>";
-		};
-		E2CBC383259F2FFC00B92BA4 /* Constant */ = {
-			isa = PBXGroup;
-			children = (
-				E2CBC384259F300700B92BA4 /* Const.swift */,
-			);
-			path = Constant;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -338,9 +319,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				E2CBC348259CD93800B92BA4 /* IGStoryView.swift in Sources */,
-				E2CBC385259F300700B92BA4 /* Const.swift in Sources */,
-				E2CBC380259F0AA700B92BA4 /* CALayer+.swift in Sources */,
-				E2CBC378259EEE9A00B92BA4 /* UIColor+.swift in Sources */,
+				E20FF10D25A18D59002E39FA /* Extensions.swift in Sources */,
+				E20FF10C25A18D59002E39FA /* Const.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
