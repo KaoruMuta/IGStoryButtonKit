@@ -74,11 +74,18 @@ import UIKit
         // contentView configuration
         contentView = UIImageView(frame: CGRect(x: borderWidth, y: borderWidth, width: frame.width - borderWidth * 2, height: frame.height - borderWidth * 2))
         
-        // indicator configuration
+        // layer configuration
         indicatorLayer = CAGradientLayer()
+        let contentViewLayer: CAShapeLayer = {
+            let layer = CAShapeLayer()
+            layer.frame = contentView.frame
+            layer.cornerRadius = contentView.frame.width / 2.0
+            layer.backgroundColor = UIColor.black.cgColor
+            return layer
+        }()
         
+        // additional configuration (reason: didSet is not called in initializer)
         if type == .script {
-            // additional configuration (reason: didSet is not called in initializer)
             contentView.layer.cornerRadius = contentView.frame.width / 2.0
             contentView.clipsToBounds = true
             contentView.image = image
@@ -87,22 +94,47 @@ import UIKit
             indicatorLayer.colors = colors.map { $0.cgColor }
         }
         
+        // GestureRecognizer configuration
+        let longPressGestureRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(didLongPressed))
+        
         // IGStoryView configuration
         layer.cornerRadius = layer.frame.width / 2.0
         layer.borderWidth = borderWidth
         layer.borderColor = UIColor.border.cgColor
         layer.addSublayer(indicatorLayer)
+        layer.addSublayer(contentViewLayer)
         addSubview(contentView)
+        addGestureRecognizer(longPressGestureRecognizer)
+    }
+    
+    @objc private func didLongPressed(sender: UILongPressGestureRecognizer) {
+        if sender.state == .began {
+            let originalTransform = transform
+            let scaledTransform = originalTransform.scaledBy(x: Parameter.scale, y: Parameter.scale)
+            UIView.animate(withDuration: Parameter.duration, animations: { [weak self] in
+                self?.transform = scaledTransform
+            }) { [weak self] _ in
+                guard let originalTransform = self?.transform else { return }
+                let scaledTransform = originalTransform.scaledBy(x: Parameter.zoom, y: Parameter.zoom)
+                UIView.animate(withDuration: Parameter.duration, animations: { [weak self] in
+                    self?.transform = scaledTransform
+                })
+            }
+        }
     }
 }
 
 public extension IGStoryButton {
-    func startAnimating(speed: Float = 0.2) {
+    func startAnimating(speed: Float = 0.2, alpha: CGFloat = 0.7) {
         rotateAnimation.speed = speed
         indicatorLayer.add(animation: rotateAnimation)
+        UIView.animate(withDuration: Parameter.duration, animations: { [weak self] in
+            self?.contentView.alpha = alpha
+        })
     }
     
     func stopAnimating() {
         indicatorLayer.removeAllAnimations()
+        contentView.alpha = 1.0
     }
 }
