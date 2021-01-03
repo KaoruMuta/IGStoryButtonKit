@@ -8,6 +8,11 @@
 import UIKit
 
 @IBDesignable open class IGStoryView: UIView {
+    
+    private enum InitializeType {
+        case script
+        case interfaceBuilder
+    }
 
     private let borderWidth: CGFloat = 3
     
@@ -46,14 +51,14 @@ import UIKit
         return animation
     }()
     
-    override public init(frame: CGRect) {
+    public init(frame: CGRect, image: UIImage? = nil, colors: [UIColor] = [.red, .orange]) {
         super.init(frame: frame)
-        configure()
+        configure(with: .script)
     }
     
     required public init?(coder: NSCoder) {
         super.init(coder: coder)
-        configure()
+        configure(with: .interfaceBuilder)
     }
     
     override public func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
@@ -61,12 +66,21 @@ import UIKit
         layer.borderColor = UIColor.border.cgColor
     }
     
-    private func configure() {
+    private func configure(with type: InitializeType) {
         // contentView configuration
         contentView = UIImageView(frame: CGRect(x: borderWidth, y: borderWidth, width: frame.width - borderWidth * 2, height: frame.height - borderWidth * 2))
-        
         // indicator configuration
         indicatorLayer = CAGradientLayer()
+        
+        // additional configuration (reason: didSet is not called in initializer)
+        if type == .script {
+            contentView.layer.cornerRadius = contentView.frame.width / 2.0
+            contentView.clipsToBounds = true
+            contentView.image = image
+            indicatorLayer.frame = CGRect(x: -borderWidth, y: -borderWidth, width: frame.width + borderWidth * 2, height: frame.height + borderWidth * 2)
+            indicatorLayer.cornerRadius = indicatorLayer.frame.width / 2.0
+            indicatorLayer.colors = colors.map { $0.cgColor }
+        }
         
         // IGStoryView configuration
         layer.cornerRadius = layer.frame.width / 2.0
