@@ -17,11 +17,11 @@ import UIKit
     public enum DisplayType {
         case seen
         case unseen
-        case status(image: UIImage)
+        case status(image: UIImage?)
         case none
     }
 
-    private let borderWidth: CGFloat = 6
+    private let borderWidth: CGFloat = 4
     
     open var image: UIImage? {
         didSet {
@@ -89,6 +89,16 @@ import UIKit
     override public func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
         intermediateLayer.borderColor = UIColor.border.cgColor
+    }
+    
+    override public func layoutSubviews() {
+        super.layoutSubviews()
+        
+        // arrange layout
+        intermediateLayer.frame = contentView.frame.insetBy(dx: -borderWidth / 2.0, dy: -borderWidth / 2.0)
+        intermediateLayer.cornerRadius = intermediateLayer.frame.width / 2.0
+        indicatorLayer.frame = CGRect(x: -borderWidth / 2.0, y: -borderWidth / 2.0, width: frame.width + borderWidth, height: frame.height + borderWidth)
+        indicatorLayer.cornerRadius = indicatorLayer.frame.width / 2.0
     }
     
     private func configure(initType: InitializeType = .interfaceBuilder, displayType: DisplayType = .none, image: UIImage? = nil, colors: [UIColor] = [.red, .orange]) {
