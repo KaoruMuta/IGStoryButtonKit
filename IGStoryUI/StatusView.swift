@@ -24,6 +24,7 @@ final public class StatusView: UIView {
         layer.borderWidth = frame.width / 6.0
         layer.borderColor = UIColor.border.cgColor
         clipsToBounds = true
+        autoresizingMask = [.flexibleWidth, .flexibleHeight]
         
         if let color = color {
             let view = UIView(frame: frame)
@@ -47,6 +48,17 @@ final public class StatusView: UIView {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    override public func layoutSubviews() {
+        super.layoutSubviews()
+        layer.cornerRadius = frame.width / 2.0
+        layer.borderWidth = frame.width / 6.0
+    }
+    
+    override public func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        layer.borderColor = UIColor.border.cgColor
     }
     
     public func setImage(image: UIImage) {
