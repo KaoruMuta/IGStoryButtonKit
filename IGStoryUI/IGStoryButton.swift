@@ -21,7 +21,7 @@ import UIKit
         case none
     }
 
-    private let borderWidth: CGFloat = 3
+    private let borderWidth: CGFloat = 5
     
     open var image: UIImage? {
         didSet {
@@ -50,9 +50,19 @@ import UIKit
         }
     }
     
+    private var intermediateLayer: CAShapeLayer! {
+        didSet {
+            intermediateLayer.frame = contentView.frame.insetBy(dx: -borderWidth / 2.0, dy: -borderWidth / 2.0)
+            intermediateLayer.borderColor = UIColor.border.cgColor
+            intermediateLayer.borderWidth = borderWidth / 2.0
+            intermediateLayer.cornerRadius = layer.frame.width / 2.0
+            intermediateLayer.backgroundColor = UIColor.black.cgColor
+        }
+    }
+    
     private var indicatorLayer: CAGradientLayer! {
         didSet {
-            indicatorLayer.frame = CGRect(x: -borderWidth, y: -borderWidth, width: frame.width + borderWidth * 2, height: frame.height + borderWidth * 2)
+            indicatorLayer.frame = CGRect(x: -borderWidth / 2.0, y: -borderWidth / 2.0, width: frame.width + borderWidth, height: frame.height + borderWidth)
             indicatorLayer.cornerRadius = indicatorLayer.frame.width / 2.0
         }
     }
@@ -66,9 +76,9 @@ import UIKit
         return animation
     }()
     
-    public init(frame: CGRect, image: UIImage? = nil, colors: [UIColor] = [.red, .orange]) {
+    public init(frame: CGRect, displayType: DisplayType = .none, image: UIImage? = nil, colors: [UIColor] = [.red, .orange]) {
         super.init(frame: frame)
-        configure(with: .script, image: image, colors: colors)
+        configure(initType: .script, displayType: displayType, image: image, colors: colors)
     }
     
     override public init(frame: CGRect) {
@@ -82,30 +92,22 @@ import UIKit
     
     override public func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
-        contentView.layer.borderColor = UIColor.border.cgColor
+        intermediateLayer.borderColor = UIColor.border.cgColor
     }
     
-    private func configure(with type: InitializeType = .interfaceBuilder, image: UIImage? = nil, colors: [UIColor] = [.red, .orange]) {
+    private func configure(initType: InitializeType = .interfaceBuilder, displayType: DisplayType = .none, image: UIImage? = nil, colors: [UIColor] = [.red, .orange]) {
         // contentView configuration
-        contentView = .init(frame: CGRect(x: borderWidth, y: borderWidth, width: frame.width - borderWidth * 2, height: frame.height - borderWidth * 2))
+        contentView = .init(frame: CGRect(x: borderWidth / 2.0, y: borderWidth / 2.0, width: frame.width - borderWidth, height: frame.height - borderWidth))
         
         // statusView configuration
-        statusView = .init(frame: CGRect(x: contentView.frame.width * 3.0 / 4.0, y: contentView.frame.width * 3.0 / 4.0, width: contentView.frame.width / 3.0, height: contentView.frame.width / 3.0), image: UIImage(named: "ramen"))
+        statusView = .init(frame: CGRect(x: contentView.frame.width * 3.0 / 4.0, y: contentView.frame.width * 3.0 / 4.0, width: contentView.frame.width / 3.0, height: contentView.frame.width / 3.0))
         
         // layer configuration
         indicatorLayer = .init()
-        let contentViewLayer: CAShapeLayer = {
-            let layer = CAShapeLayer()
-            layer.frame = contentView.frame
-            layer.borderWidth = borderWidth
-            layer.borderColor = UIColor.border.cgColor
-            layer.cornerRadius = contentView.frame.width / 2.0
-            layer.backgroundColor = UIColor.black.cgColor
-            return layer
-        }()
+        intermediateLayer = .init()
         
         // additional configuration (reason: didSet is not called in initializer)
-        if type == .script {
+        if initType == .script {
             contentView.layer.cornerRadius = contentView.frame.width / 2.0
             contentView.clipsToBounds = true
             contentView.image = image
@@ -119,12 +121,13 @@ import UIKit
         
         // IGStoryView configuration
         layer.cornerRadius = layer.frame.width / 2.0
-        contentView.layer.borderWidth = borderWidth
-        contentView.layer.borderColor = UIColor.border.cgColor
         layer.addSublayer(indicatorLayer)
-        layer.addSublayer(contentViewLayer)
+        layer.addSublayer(intermediateLayer)
         addSubview(contentView)
+        addSubview(statusView)
         addGestureRecognizer(longPressGestureRecognizer)
+        
+        update(by: displayType)
     }
 }
 
@@ -170,7 +173,7 @@ private extension IGStoryButton {
             indicatorLayer.isHidden = true
             statusView.isHidden = false
         case .none:
-            indicatorLayer.isHidden = false
+            indicatorLayer.isHidden = true
             statusView.isHidden = true
         }
     }
