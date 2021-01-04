@@ -10,30 +10,51 @@ import IGStoryUI
 
 class ViewController: UIViewController {
     
-    @IBOutlet private weak var storyButton: IGStoryButton!
+    @IBOutlet private weak var storyGalleryView: UICollectionView! {
+        didSet {
+            storyGalleryView.delegate = self
+            storyGalleryView.dataSource = self
+            storyGalleryView.isScrollEnabled = true
+        }
+    }
+    
+    private var displayTypes: [IGStoryButton.DisplayType] = []
+    private var images: [UIImage?] = []
+    private var descriptions: [String] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        storyButton.backgroundColor = .clear
-        storyButton.colors = [.yellow, .cyan, .black]
-        storyButton.image = UIImage(named: "ramen")
-        storyButton.type = .unseen
-        storyButton.addTarget(self, action: #selector(didTapped), for: .touchUpInside)
+        storyGalleryView.register(UINib(nibName: "StoryCell", bundle: nil), forCellWithReuseIdentifier: "Cell")
+        displayTypes = [.seen, .unseen, .status(image: UIImage(named: "ramen")), .none]
+        images = [UIImage(named: "ramen"), UIImage(named: "ramen"), UIImage(named: "ramen"), UIImage(named: "ramen")]
+        descriptions = ["ramen", "ramen", "ramen", "ramen"]
+    }
+}
+
+extension ViewController: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: collectionView.frame.height, height: collectionView.frame.height)
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return 5
+    }
+}
+
+extension ViewController: UICollectionViewDataSource {
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 1
     }
     
-    @objc private func didTapped() {
-        print("didTapped")
-        
-        storyButton.startAnimating()
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2) { [weak self] in
-            self?.storyButton.stopAnimating()
-            self?.storyButton.type = .seen
-        }
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return displayTypes.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as? StoryCell else { return UICollectionViewCell() }
+        cell.configure(displayType: displayTypes[indexPath.row], image: images[indexPath.row], text: descriptions[indexPath.row])
+        return cell
     }
 }
 

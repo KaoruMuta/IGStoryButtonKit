@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="psd-1Q-XZM">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--IGStoryButton-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="ExampleApp" customModuleProvider="target" sceneMemberID="viewController">
@@ -16,36 +17,66 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iMT-WT-NhL" customClass="IGStoryButton" customModule="IGStoryUI">
-                                <rect key="frame" x="157" y="398" width="100" height="100"/>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="nRS-LV-V6b">
+                                <rect key="frame" x="0.0" y="88" width="414" height="80"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="100" id="EbL-Ku-I4Q"/>
-                                    <constraint firstAttribute="height" constant="100" id="mWX-Wh-Ddg"/>
+                                    <constraint firstAttribute="height" constant="80" id="GUR-H5-JpO"/>
                                 </constraints>
-                            </view>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="CoG-cg-BXk">
+                                    <size key="itemSize" width="128" height="128"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Cell" id="Ucb-LM-TmW" customClass="StoryCell" customModule="ExampleApp" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="xbC-0u-lpP">
+                                            <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </collectionViewCellContentView>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="iMT-WT-NhL" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="9UD-oe-r3Q"/>
-                            <constraint firstItem="iMT-WT-NhL" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="tlp-my-OQD"/>
+                            <constraint firstItem="nRS-LV-V6b" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="KTl-5Q-BKO"/>
+                            <constraint firstItem="nRS-LV-V6b" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="bGc-RP-u8r"/>
+                            <constraint firstItem="nRS-LV-V6b" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="mP7-35-buF"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" title="IGStoryButton" largeTitleDisplayMode="never" id="RYX-ay-ts6"/>
                     <connections>
-                        <outlet property="storyButton" destination="iMT-WT-NhL" id="xte-c3-Eki"/>
+                        <outlet property="storyGalleryView" destination="nRS-LV-V6b" id="MbA-TH-wo0"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-354" y="94"/>
+            <point key="canvasLocation" x="555.07246376811599" y="93.75"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="mqj-Rt-3Dk">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="psd-1Q-XZM" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="D2Z-Tw-OSn">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="aw0-5a-XVX"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lfJ-y9-Zkm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-355.07246376811599" y="93.75"/>
         </scene>
     </scenes>
-    <designables>
-        <designable name="iMT-WT-NhL">
-            <size key="intrinsicContentSize" width="30" height="34"/>
-        </designable>
-    </designables>
     <resources>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
