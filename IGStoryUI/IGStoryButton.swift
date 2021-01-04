@@ -139,7 +139,7 @@ private extension IGStoryButton {
     func configureView() {
         contentView = .init(frame: CGRect(x: borderWidth / 2.0, y: borderWidth / 2.0, width: frame.width - borderWidth, height: frame.height - borderWidth))
         contentView.image = image
-        statusView = .init(frame: CGRect(x: contentView.frame.width * 3.0 / 4.0, y: contentView.frame.width * 3.0 / 4.0, width: contentView.frame.width / 3.0, height: contentView.frame.width / 3.0))
+        statusView = .init(frame: CGRect(x: (frame.width - borderWidth) * 3.0 / 4.0, y: (frame.width - borderWidth) * 3.0 / 4.0, width: (frame.width - borderWidth) / 3.0, height: (frame.width - borderWidth) / 3.0))
     }
     
     func configureLayer() {
@@ -155,6 +155,7 @@ private extension IGStoryButton {
         indicatorLayer.cornerRadius = indicatorLayer.frame.width / 2.0
         intermediateLayer.frame = contentView.frame.insetBy(dx: -borderWidth / 2.0, dy: -borderWidth / 2.0)
         intermediateLayer.cornerRadius = intermediateLayer.frame.width / 2.0
+        statusView.frame = CGRect(x: (frame.width - borderWidth) * 3.0 / 4.0, y: (frame.width - borderWidth) * 3.0 / 4.0, width: (frame.width - borderWidth) / 3.0, height: (frame.width - borderWidth) / 3.0)
     }
     
     /// configureRecognizer: GestureRecognizer configuration
