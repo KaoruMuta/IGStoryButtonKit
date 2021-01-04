@@ -7,6 +7,11 @@
 
 import UIKit
 
+public protocol IGStoryButtonDelegate: class {
+    func didTapped()
+    func didLongPressed()
+}
+
 @IBDesignable open class IGStoryButton: UIButton {
     
     private enum InitializeType {
@@ -33,6 +38,8 @@ import UIKit
             }
         }
     }
+    
+    public weak var delegate: IGStoryButtonDelegate?
 
     private let borderWidth: CGFloat = 4
     
@@ -136,6 +143,7 @@ import UIKit
         }
         
         // GestureRecognizer configuration
+        let tapGestureRecognizer =  UITapGestureRecognizer(target: self, action: #selector(didTapped))
         let longPressGestureRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(didLongPressed))
         
         // IGStoryView configuration
@@ -144,6 +152,7 @@ import UIKit
         layer.addSublayer(intermediateLayer)
         addSubview(contentView)
         addSubview(statusView)
+        addGestureRecognizer(tapGestureRecognizer)
         addGestureRecognizer(longPressGestureRecognizer)
         
         update(by: displayType)
@@ -166,7 +175,12 @@ public extension IGStoryButton {
 }
 
 private extension IGStoryButton {
+    @objc func didTapped(sender: UITapGestureRecognizer) {
+        delegate?.didTapped()
+    }
+    
     @objc func didLongPressed(sender: UILongPressGestureRecognizer) {
+        delegate?.didLongPressed()
         if sender.state == .began {
             let originalTransform = transform
             let scaledTransform = originalTransform.scaledBy(x: Parameter.scale, y: Parameter.scale)
