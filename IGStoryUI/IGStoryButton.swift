@@ -17,7 +17,7 @@ import UIKit
     public enum DisplayType {
         case seen
         case unseen
-        case status(image: UIImage?)
+        case status(type: StatusView.DisplayType)
         case none
     }
 
@@ -105,8 +105,8 @@ import UIKit
         // contentView configuration
         contentView = .init(frame: CGRect(x: borderWidth / 2.0, y: borderWidth / 2.0, width: frame.width - borderWidth, height: frame.height - borderWidth))
         
-        // statusView configuration (FIXME)
-        statusView = .init(frame: CGRect(x: contentView.frame.width * 3.0 / 4.0, y: contentView.frame.width * 3.0 / 4.0, width: contentView.frame.width / 3.0, height: contentView.frame.width / 3.0), color: .green)
+        // statusView configuration
+        statusView = .init(frame: CGRect(x: contentView.frame.width * 3.0 / 4.0, y: contentView.frame.width * 3.0 / 4.0, width: contentView.frame.width / 3.0, height: contentView.frame.width / 3.0))
         
         // layer configuration
         indicatorLayer = .init()
@@ -169,8 +169,8 @@ private extension IGStoryButton {
         }
     }
     
-    func update(by type: DisplayType) {
-        switch type {
+    func update(by displayType: DisplayType) {
+        switch displayType {
         case .seen:
             indicatorLayer.isHidden = false
             statusView.isHidden = true
@@ -179,9 +179,15 @@ private extension IGStoryButton {
             indicatorLayer.isHidden = false
             statusView.isHidden = true
             indicatorLayer.colors = colors.map { $0.cgColor }
-        case .status:
+        case .status(let type):
             indicatorLayer.isHidden = true
             statusView.isHidden = false
+            switch type {
+            case .color(let color):
+                statusView.set(color: color)
+            case .image(let image):
+                statusView.set(image: image)
+            }
         case .none:
             indicatorLayer.isHidden = true
             statusView.isHidden = true
