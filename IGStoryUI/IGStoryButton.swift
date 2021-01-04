@@ -7,13 +7,17 @@
 
 import UIKit
 
+
+/// IGStoryButtonDelegate: By conforming this Delegate, tap event and long pressed event are detected
 public protocol IGStoryButtonDelegate: class {
+    /// didTapped: In this closure, any action you want should be operated on tap event
     func didTapped()
+    /// didLongPressed: In this closure, any action you want should be operated on long press event
     func didLongPressed()
 }
 
 @IBDesignable open class IGStoryButton: UIButton {
-    
+    // MARK: - public access property
     private enum InitializeType {
         case script
         case interfaceBuilder
@@ -40,8 +44,8 @@ public protocol IGStoryButtonDelegate: class {
     }
     
     public weak var delegate: IGStoryButtonDelegate?
-
-    private let borderWidth: CGFloat = 4
+    
+    public var statusView: StatusView!
     
     public var image: UIImage? {
         didSet {
@@ -55,13 +59,14 @@ public protocol IGStoryButtonDelegate: class {
         }
     }
     
-    public var statusView: StatusView!
-    
     public var type: DisplayType = .none {
         didSet {
             update(by: type)
         }
     }
+    
+    // MARK: - private access property
+    private let borderWidth: CGFloat = 4
     
     private var contentView: ContentView!
     
@@ -91,6 +96,7 @@ public protocol IGStoryButtonDelegate: class {
         return animation
     }()
     
+    // MARK: - Initializer
     public init(frame: CGRect, displayType: DisplayType, image: UIImage?, colors: [UIColor]) {
         super.init(frame: frame)
         configure(initType: .script, displayType: displayType, image: image, colors: colors)
@@ -145,15 +151,14 @@ public protocol IGStoryButtonDelegate: class {
         // GestureRecognizer configuration
         let tapGestureRecognizer =  UITapGestureRecognizer(target: self, action: #selector(didTapped))
         let longPressGestureRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(didLongPressed))
+        addGestureRecognizer(tapGestureRecognizer)
+        addGestureRecognizer(longPressGestureRecognizer)
         
-        // IGStoryView configuration
         layer.cornerRadius = layer.frame.width / 2.0
         layer.addSublayer(indicatorLayer)
         layer.addSublayer(intermediateLayer)
         addSubview(contentView)
         addSubview(statusView)
-        addGestureRecognizer(tapGestureRecognizer)
-        addGestureRecognizer(longPressGestureRecognizer)
         
         update(by: displayType)
     }
