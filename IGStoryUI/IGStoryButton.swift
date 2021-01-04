@@ -57,7 +57,7 @@ import UIKit
     
     private var indicatorLayer: CAGradientLayer! {
         didSet {
-            indicatorLayer.frame = CGRect(x: -borderWidth / 2.0, y: -borderWidth / 2.0, width: frame.width + borderWidth, height: frame.height + borderWidth)
+            indicatorLayer.frame = contentView.frame.insetBy(dx: -borderWidth, dy: -borderWidth)
             indicatorLayer.cornerRadius = indicatorLayer.frame.width / 2.0
         }
     }
@@ -97,7 +97,7 @@ import UIKit
         // arrange layout
         intermediateLayer.frame = contentView.frame.insetBy(dx: -borderWidth / 2.0, dy: -borderWidth / 2.0)
         intermediateLayer.cornerRadius = intermediateLayer.frame.width / 2.0
-        indicatorLayer.frame = CGRect(x: -borderWidth / 2.0, y: -borderWidth / 2.0, width: frame.width + borderWidth, height: frame.height + borderWidth)
+        indicatorLayer.frame = contentView.frame.insetBy(dx: -borderWidth, dy: -borderWidth)
         indicatorLayer.cornerRadius = indicatorLayer.frame.width / 2.0
     }
     
