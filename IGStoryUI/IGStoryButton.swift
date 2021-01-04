@@ -66,26 +66,13 @@ public protocol IGStoryButtonDelegate: class {
     }
     
     // MARK: - private access property
-    private let borderWidth: CGFloat = 4
-    
     private var contentView: ContentView!
     
-    private var intermediateLayer: CAShapeLayer! {
-        didSet {
-            intermediateLayer.frame = contentView.frame.insetBy(dx: -borderWidth / 2.0, dy: -borderWidth / 2.0)
-            intermediateLayer.borderColor = UIColor.border.cgColor
-            intermediateLayer.borderWidth = borderWidth / 2.0
-            intermediateLayer.cornerRadius = intermediateLayer.frame.width / 2.0
-            intermediateLayer.backgroundColor = UIColor.black.cgColor
-        }
-    }
+    private let borderWidth: CGFloat = 4
     
-    private var indicatorLayer: CAGradientLayer! {
-        didSet {
-            indicatorLayer.frame = contentView.frame.insetBy(dx: -borderWidth, dy: -borderWidth)
-            indicatorLayer.cornerRadius = indicatorLayer.frame.width / 2.0
-        }
-    }
+    private let intermediateLayer: CAShapeLayer! = .init()
+    
+    private let indicatorLayer: CAGradientLayer = .init()
     
     private let rotateAnimation: CABasicAnimation = {
         let animation = CABasicAnimation(keyPath: KeyPath.rotation)
@@ -121,38 +108,27 @@ public protocol IGStoryButtonDelegate: class {
         super.layoutSubviews()
         
         // arrange layout
-        intermediateLayer.frame = contentView.frame.insetBy(dx: -borderWidth / 2.0, dy: -borderWidth / 2.0)
-        intermediateLayer.cornerRadius = intermediateLayer.frame.width / 2.0
-        indicatorLayer.frame = contentView.frame.insetBy(dx: -borderWidth, dy: -borderWidth)
-        indicatorLayer.cornerRadius = indicatorLayer.frame.width / 2.0
+        configureLayout()
     }
     
     private func configure(initType: InitializeType = .interfaceBuilder, displayType: DisplayType = .none, image: UIImage? = nil, colors: [UIColor] = [.red, .orange]) {
-        // contentView configuration
-        contentView = .init(frame: CGRect(x: borderWidth / 2.0, y: borderWidth / 2.0, width: frame.width - borderWidth, height: frame.height - borderWidth))
         
-        // statusView configuration
-        statusView = .init(frame: CGRect(x: contentView.frame.width * 3.0 / 4.0, y: contentView.frame.width * 3.0 / 4.0, width: contentView.frame.width / 3.0, height: contentView.frame.width / 3.0))
+        configureView()
         
         // layer configuration
-        indicatorLayer = .init()
-        intermediateLayer = .init()
+        configureLayer()
+        configureLayout()
         
         // additional configuration (reason: didSet is not called in initializer)
         if initType == .script {
-            contentView.layer.cornerRadius = contentView.frame.width / 2.0
-            contentView.clipsToBounds = true
             contentView.image = image
-            indicatorLayer.frame = CGRect(x: -borderWidth, y: -borderWidth, width: frame.width + borderWidth * 2, height: frame.height + borderWidth * 2)
+            indicatorLayer.frame = contentView.frame.insetBy(dx: -borderWidth, dy: -borderWidth)
             indicatorLayer.cornerRadius = indicatorLayer.frame.width / 2.0
             indicatorLayer.colors = colors.map { $0.cgColor }
         }
         
         // GestureRecognizer configuration
-        let tapGestureRecognizer =  UITapGestureRecognizer(target: self, action: #selector(didTapped))
-        let longPressGestureRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(didLongPressed))
-        addGestureRecognizer(tapGestureRecognizer)
-        addGestureRecognizer(longPressGestureRecognizer)
+        configureRecognizer()
         
         layer.cornerRadius = layer.frame.width / 2.0
         layer.addSublayer(indicatorLayer)
@@ -161,6 +137,36 @@ public protocol IGStoryButtonDelegate: class {
         addSubview(statusView)
         
         update(by: displayType)
+    }
+    
+    private func configureView() {
+        // contentView configuration
+        contentView = .init(frame: CGRect(x: borderWidth / 2.0, y: borderWidth / 2.0, width: frame.width - borderWidth, height: frame.height - borderWidth))
+        
+        // statusView configuration
+        statusView = .init(frame: CGRect(x: contentView.frame.width * 3.0 / 4.0, y: contentView.frame.width * 3.0 / 4.0, width: contentView.frame.width / 3.0, height: contentView.frame.width / 3.0))
+    }
+    
+    private func configureLayer() {
+        indicatorLayer.colors = colors.map { $0.cgColor }
+        intermediateLayer.borderColor = UIColor.border.cgColor
+        intermediateLayer.borderWidth = borderWidth / 2.0
+        intermediateLayer.backgroundColor = UIColor.black.cgColor
+    }
+    
+    private func configureLayout() {
+        indicatorLayer.frame = contentView.frame.insetBy(dx: -borderWidth, dy: -borderWidth)
+        indicatorLayer.cornerRadius = indicatorLayer.frame.width / 2.0
+        intermediateLayer.frame = contentView.frame.insetBy(dx: -borderWidth / 2.0, dy: -borderWidth / 2.0)
+        intermediateLayer.cornerRadius = intermediateLayer.frame.width / 2.0
+    }
+    
+    /// configureRecognizer: GestureRecognizer configuration
+    private func configureRecognizer() {
+        let tapGestureRecognizer =  UITapGestureRecognizer(target: self, action: #selector(didTapped))
+        let longPressGestureRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(didLongPressed))
+        addGestureRecognizer(tapGestureRecognizer)
+        addGestureRecognizer(longPressGestureRecognizer)
     }
 }
 
