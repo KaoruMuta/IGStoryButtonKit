@@ -17,11 +17,11 @@ import UIKit
     public enum DisplayType {
         case seen
         case unseen
-        case status
+        case status(image: UIImage)
         case none
     }
 
-    private let borderWidth: CGFloat = 5
+    private let borderWidth: CGFloat = 6
     
     open var image: UIImage? {
         didSet {
@@ -43,19 +43,14 @@ import UIKit
         }
     }
     
-    private var contentView: UIImageView! {
-        didSet {
-            contentView.layer.cornerRadius = contentView.frame.width / 2.0
-            contentView.clipsToBounds = true
-        }
-    }
+    private var contentView: ContentView!
     
     private var intermediateLayer: CAShapeLayer! {
         didSet {
             intermediateLayer.frame = contentView.frame.insetBy(dx: -borderWidth / 2.0, dy: -borderWidth / 2.0)
             intermediateLayer.borderColor = UIColor.border.cgColor
             intermediateLayer.borderWidth = borderWidth / 2.0
-            intermediateLayer.cornerRadius = layer.frame.width / 2.0
+            intermediateLayer.cornerRadius = intermediateLayer.frame.width / 2.0
             intermediateLayer.backgroundColor = UIColor.black.cgColor
         }
     }
@@ -76,13 +71,14 @@ import UIKit
         return animation
     }()
     
-    public init(frame: CGRect, displayType: DisplayType = .none, image: UIImage? = nil, colors: [UIColor] = [.red, .orange]) {
+    public init(frame: CGRect, displayType: DisplayType, image: UIImage?, colors: [UIColor]) {
         super.init(frame: frame)
         configure(initType: .script, displayType: displayType, image: image, colors: colors)
     }
     
     override public init(frame: CGRect) {
         super.init(frame: frame)
+        configure(initType: .script)
     }
     
     required public init?(coder: NSCoder) {
@@ -99,8 +95,8 @@ import UIKit
         // contentView configuration
         contentView = .init(frame: CGRect(x: borderWidth / 2.0, y: borderWidth / 2.0, width: frame.width - borderWidth, height: frame.height - borderWidth))
         
-        // statusView configuration
-        statusView = .init(frame: CGRect(x: contentView.frame.width * 3.0 / 4.0, y: contentView.frame.width * 3.0 / 4.0, width: contentView.frame.width / 3.0, height: contentView.frame.width / 3.0))
+        // statusView configuration (FIXME)
+        statusView = .init(frame: CGRect(x: contentView.frame.width * 3.0 / 4.0, y: contentView.frame.width * 3.0 / 4.0, width: contentView.frame.width / 3.0, height: contentView.frame.width / 3.0), color: .green)
         
         // layer configuration
         indicatorLayer = .init()
@@ -166,8 +162,12 @@ private extension IGStoryButton {
     func update(by type: DisplayType) {
         switch type {
         case .seen:
+            indicatorLayer.isHidden = false
+            statusView.isHidden = true
             indicatorLayer.colors = [UIColor.black.cgColor, UIColor.white.cgColor]
         case .unseen:
+            indicatorLayer.isHidden = false
+            statusView.isHidden = true
             indicatorLayer.colors = colors.map { $0.cgColor }
         case .status:
             indicatorLayer.isHidden = true
