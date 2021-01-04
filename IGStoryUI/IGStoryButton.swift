@@ -18,11 +18,6 @@ public protocol IGStoryButtonDelegate: class {
 
 @IBDesignable open class IGStoryButton: UIButton {
     // MARK: - public access property
-    private enum InitializeType {
-        case script
-        case interfaceBuilder
-    }
-    
     public enum DisplayType: Equatable {
         case seen
         case unseen
@@ -86,12 +81,12 @@ public protocol IGStoryButtonDelegate: class {
     // MARK: - Initializer
     public init(frame: CGRect, displayType: DisplayType, image: UIImage?, colors: [UIColor]) {
         super.init(frame: frame)
-        configure(initType: .script, displayType: displayType, image: image, colors: colors)
+        configure(displayType: displayType, image: image, colors: colors)
     }
     
     override public init(frame: CGRect) {
         super.init(frame: frame)
-        configure(initType: .script)
+        configure()
     }
     
     required public init?(coder: NSCoder) {
@@ -106,31 +101,19 @@ public protocol IGStoryButtonDelegate: class {
     
     override public func layoutSubviews() {
         super.layoutSubviews()
-        
         // arrange layout
         configureLayout()
     }
     
-    private func configure(initType: InitializeType = .interfaceBuilder, displayType: DisplayType = .none, image: UIImage? = nil, colors: [UIColor] = [.red, .orange]) {
+    private func configure(displayType: DisplayType = .none, image: UIImage? = nil, colors: [UIColor] = [.red, .orange]) {
         
         configureView()
-        
         // layer configuration
         configureLayer()
         configureLayout()
-        
-        // additional configuration (reason: didSet is not called in initializer)
-        if initType == .script {
-            contentView.image = image
-            indicatorLayer.frame = contentView.frame.insetBy(dx: -borderWidth, dy: -borderWidth)
-            indicatorLayer.cornerRadius = indicatorLayer.frame.width / 2.0
-            indicatorLayer.colors = colors.map { $0.cgColor }
-        }
-        
         // GestureRecognizer configuration
         configureRecognizer()
         
-        layer.cornerRadius = layer.frame.width / 2.0
         layer.addSublayer(indicatorLayer)
         layer.addSublayer(intermediateLayer)
         addSubview(contentView)
@@ -142,6 +125,7 @@ public protocol IGStoryButtonDelegate: class {
     private func configureView() {
         // contentView configuration
         contentView = .init(frame: CGRect(x: borderWidth / 2.0, y: borderWidth / 2.0, width: frame.width - borderWidth, height: frame.height - borderWidth))
+        contentView.image = image
         
         // statusView configuration
         statusView = .init(frame: CGRect(x: contentView.frame.width * 3.0 / 4.0, y: contentView.frame.width * 3.0 / 4.0, width: contentView.frame.width / 3.0, height: contentView.frame.width / 3.0))
@@ -155,6 +139,7 @@ public protocol IGStoryButtonDelegate: class {
     }
     
     private func configureLayout() {
+        layer.cornerRadius = layer.frame.width / 2.0
         indicatorLayer.frame = contentView.frame.insetBy(dx: -borderWidth, dy: -borderWidth)
         indicatorLayer.cornerRadius = indicatorLayer.frame.width / 2.0
         intermediateLayer.frame = contentView.frame.insetBy(dx: -borderWidth / 2.0, dy: -borderWidth / 2.0)
