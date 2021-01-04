@@ -14,7 +14,9 @@ class ViewController: UIViewController {
         didSet {
             storyGalleryView.delegate = self
             storyGalleryView.dataSource = self
-            storyGalleryView.isScrollEnabled = true
+            let layout = UICollectionViewFlowLayout()
+            layout.scrollDirection = .horizontal
+            storyGalleryView.collectionViewLayout = layout
         }
     }
     
@@ -26,9 +28,9 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         storyGalleryView.register(UINib(nibName: "StoryCell", bundle: nil), forCellWithReuseIdentifier: "Cell")
-        displayTypes = [.seen, .unseen, .status(image: UIImage(named: "ramen")), .none]
-        images = [UIImage(named: "ramen"), UIImage(named: "ramen"), UIImage(named: "ramen"), UIImage(named: "ramen")]
-        descriptions = ["ramen", "ramen", "ramen", "ramen"]
+        displayTypes = [.seen, .unseen, .status(type: .color(of: .green)), .status(type: .image(of: UIImage(named: "ramen"))), .none]
+        images = [UIImage(named: "ramen"), UIImage(named: "ramen"), UIImage(named: "ramen"), UIImage(named: "ramen"), UIImage(named: "ramen")]
+        descriptions = ["seen", "unseen", "status (color)", "status (image)", "none"]
     }
 }
 
