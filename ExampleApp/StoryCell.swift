@@ -12,7 +12,6 @@ class StoryCell: UICollectionViewCell {
     
     @IBOutlet private weak var storyButton: IGStoryButton!
     @IBOutlet private weak var descriptionLabel: UILabel!
-    
 
     override func awakeFromNib() {
         super.awakeFromNib()
