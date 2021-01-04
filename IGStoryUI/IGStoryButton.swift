@@ -7,7 +7,6 @@
 
 import UIKit
 
-
 /// IGStoryButtonDelegate: By conforming this Delegate, tap event and long pressed event are detected
 public protocol IGStoryButtonDelegate: class {
     /// didTapped: In this closure, any action you want should be operated on tap event
@@ -106,12 +105,9 @@ public protocol IGStoryButtonDelegate: class {
     }
     
     private func configure(displayType: DisplayType = .none, image: UIImage? = nil, colors: [UIColor] = [.red, .orange]) {
-        
         configureView()
-        // layer configuration
         configureLayer()
         configureLayout()
-        // GestureRecognizer configuration
         configureRecognizer()
         
         layer.addSublayer(indicatorLayer)
@@ -120,38 +116,6 @@ public protocol IGStoryButtonDelegate: class {
         addSubview(statusView)
         
         update(by: displayType)
-    }
-    
-    private func configureView() {
-        // contentView configuration
-        contentView = .init(frame: CGRect(x: borderWidth / 2.0, y: borderWidth / 2.0, width: frame.width - borderWidth, height: frame.height - borderWidth))
-        contentView.image = image
-        
-        // statusView configuration
-        statusView = .init(frame: CGRect(x: contentView.frame.width * 3.0 / 4.0, y: contentView.frame.width * 3.0 / 4.0, width: contentView.frame.width / 3.0, height: contentView.frame.width / 3.0))
-    }
-    
-    private func configureLayer() {
-        indicatorLayer.colors = colors.map { $0.cgColor }
-        intermediateLayer.borderColor = UIColor.border.cgColor
-        intermediateLayer.borderWidth = borderWidth / 2.0
-        intermediateLayer.backgroundColor = UIColor.black.cgColor
-    }
-    
-    private func configureLayout() {
-        layer.cornerRadius = layer.frame.width / 2.0
-        indicatorLayer.frame = contentView.frame.insetBy(dx: -borderWidth, dy: -borderWidth)
-        indicatorLayer.cornerRadius = indicatorLayer.frame.width / 2.0
-        intermediateLayer.frame = contentView.frame.insetBy(dx: -borderWidth / 2.0, dy: -borderWidth / 2.0)
-        intermediateLayer.cornerRadius = intermediateLayer.frame.width / 2.0
-    }
-    
-    /// configureRecognizer: GestureRecognizer configuration
-    private func configureRecognizer() {
-        let tapGestureRecognizer =  UITapGestureRecognizer(target: self, action: #selector(didTapped))
-        let longPressGestureRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(didLongPressed))
-        addGestureRecognizer(tapGestureRecognizer)
-        addGestureRecognizer(longPressGestureRecognizer)
     }
 }
 
@@ -167,6 +131,38 @@ public extension IGStoryButton {
     func stopAnimating() {
         indicatorLayer.removeAllAnimations()
         contentView.alpha = 1.0
+    }
+}
+
+// Configuration
+private extension IGStoryButton {
+    func configureView() {
+        contentView = .init(frame: CGRect(x: borderWidth / 2.0, y: borderWidth / 2.0, width: frame.width - borderWidth, height: frame.height - borderWidth))
+        contentView.image = image
+        statusView = .init(frame: CGRect(x: contentView.frame.width * 3.0 / 4.0, y: contentView.frame.width * 3.0 / 4.0, width: contentView.frame.width / 3.0, height: contentView.frame.width / 3.0))
+    }
+    
+    func configureLayer() {
+        indicatorLayer.colors = colors.map { $0.cgColor }
+        intermediateLayer.borderColor = UIColor.border.cgColor
+        intermediateLayer.borderWidth = borderWidth / 2.0
+        intermediateLayer.backgroundColor = UIColor.black.cgColor
+    }
+    
+    func configureLayout() {
+        layer.cornerRadius = layer.frame.width / 2.0
+        indicatorLayer.frame = contentView.frame.insetBy(dx: -borderWidth, dy: -borderWidth)
+        indicatorLayer.cornerRadius = indicatorLayer.frame.width / 2.0
+        intermediateLayer.frame = contentView.frame.insetBy(dx: -borderWidth / 2.0, dy: -borderWidth / 2.0)
+        intermediateLayer.cornerRadius = intermediateLayer.frame.width / 2.0
+    }
+    
+    /// configureRecognizer: GestureRecognizer configuration
+    func configureRecognizer() {
+        let tapGestureRecognizer =  UITapGestureRecognizer(target: self, action: #selector(didTapped))
+        let longPressGestureRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(didLongPressed))
+        addGestureRecognizer(tapGestureRecognizer)
+        addGestureRecognizer(longPressGestureRecognizer)
     }
 }
 
