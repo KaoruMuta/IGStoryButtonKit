@@ -14,11 +14,24 @@ import UIKit
         case interfaceBuilder
     }
     
-    public enum DisplayType {
+    public enum DisplayType: Equatable {
         case seen
         case unseen
         case status(type: StatusView.DisplayType)
         case none
+        
+        public static func == (lhs: IGStoryButton.DisplayType, rhs: IGStoryButton.DisplayType) -> Bool {
+            switch (lhs, rhs) {
+            case (.seen, .seen), (.unseen, .unseen), (.none, .none):
+                return true
+            case (.status(type: .color(let lhsColor)), .status(type: .color(let rhsColor))):
+                return lhsColor == rhsColor
+            case (.status(type: .image(let lhsImage)), .status(type: .image(let rhsImage))):
+                return lhsImage == rhsImage
+            default:
+                return false
+            }
+        }
     }
 
     private let borderWidth: CGFloat = 4
