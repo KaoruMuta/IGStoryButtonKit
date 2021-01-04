@@ -12,6 +12,7 @@ class ViewController: UIViewController {
     
     @IBOutlet private weak var storyGalleryView: UICollectionView! {
         didSet {
+            storyGalleryView.register(UINib(nibName: "StoryCell", bundle: nil), forCellWithReuseIdentifier: "Cell")
             storyGalleryView.delegate = self
             storyGalleryView.dataSource = self
             let layout = UICollectionViewFlowLayout()
@@ -27,10 +28,23 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        storyGalleryView.register(UINib(nibName: "StoryCell", bundle: nil), forCellWithReuseIdentifier: "Cell")
         displayTypes = [.seen, .unseen, .status(type: .color(of: .green)), .status(type: .image(of: UIImage(named: "ramen"))), .none]
         images = [UIImage(named: "ramen"), UIImage(named: "ramen"), UIImage(named: "ramen"), UIImage(named: "ramen"), UIImage(named: "ramen")]
         descriptions = ["seen", "unseen", "status (color)", "status (image)", "none"]
+        
+        setUI()
+    }
+    
+    private func setUI() {
+        let button: IGStoryButton = {
+            let button = IGStoryButton()
+            button.frame = CGRect(origin: CGPoint(x: view.center.x - 50 / 2.0, y: view.center.y - 50 / 2.0), size: CGSize(width: 50, height: 50))
+            button.colors = [UIColor.cyan, UIColor.yellow, UIColor.gray]
+            button.image = UIImage(named: "ramen")
+            button.type = .status(type: .color(of: .green))
+            return button
+        }()
+        view.addSubview(button)
     }
 }
 
