@@ -110,6 +110,8 @@ public protocol IGStoryButtonDelegate: class {
         configureLayout()
         configureRecognizer()
         
+        contentView.image = image
+        indicatorLayer.colors = colors.map { $0.cgColor }
         layer.addSublayer(indicatorLayer)
         layer.addSublayer(intermediateLayer)
         addSubview(contentView)
@@ -138,12 +140,10 @@ public extension IGStoryButton {
 private extension IGStoryButton {
     func configureView() {
         contentView = .init(frame: CGRect(x: borderWidth / 2.0, y: borderWidth / 2.0, width: frame.width - borderWidth, height: frame.height - borderWidth))
-        contentView.image = image
         statusView = .init(frame: CGRect(x: (frame.width - borderWidth) * 3.0 / 4.0, y: (frame.width - borderWidth) * 3.0 / 4.0, width: (frame.width - borderWidth) / 3.0, height: (frame.width - borderWidth) / 3.0))
     }
     
     func configureLayer() {
-        indicatorLayer.colors = colors.map { $0.cgColor }
         intermediateLayer.borderColor = UIColor.border.cgColor
         intermediateLayer.borderWidth = borderWidth / 2.0
         intermediateLayer.backgroundColor = UIColor.black.cgColor
