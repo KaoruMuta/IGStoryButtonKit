@@ -23,21 +23,21 @@ import UIKit
 
     private let borderWidth: CGFloat = 4
     
-    open var image: UIImage? {
+    public var image: UIImage? {
         didSet {
             contentView.image = image
         }
     }
     
-    open var colors: [UIColor] = [.red, .orange] {
+    public var colors: [UIColor] = [.red, .orange] {
         didSet {
             indicatorLayer.colors = colors.map { $0.cgColor }
         }
     }
     
-    open var statusView: StatusView!
+    public var statusView: StatusView!
     
-    open var type: DisplayType = .none {
+    public var type: DisplayType = .none {
         didSet {
             update(by: type)
         }

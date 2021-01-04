@@ -37,12 +37,14 @@ final public class StatusView: UIImageView {
         super.traitCollectionDidChange(previousTraitCollection)
         layer.borderColor = UIColor.border.cgColor
     }
-    
-    public func set(image: UIImage?) {
+}
+
+public extension StatusView {
+    func set(image: UIImage?) {
         self.image = image
     }
     
-    public func set(color: UIColor?) {
+    func set(color: UIColor?) {
         self.image = nil
         self.backgroundColor = color
     }
