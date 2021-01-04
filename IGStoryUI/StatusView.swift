@@ -7,43 +7,20 @@
 
 import UIKit
 
-// FIXME
-final public class StatusView: UIView {
+final public class StatusView: UIImageView {
     
     public enum DisplayType {
-        case image
-        case color
+        case image(of: UIImage?)
+        case color(of: UIColor?)
     }
     
-    private var imageView: UIImageView = .init()
-    private var view: UIView = .init()
-    
-    init(frame: CGRect, color: UIColor? = nil, image: UIImage? = nil) {
+    override public init(frame: CGRect) {
         super.init(frame: frame)
         layer.cornerRadius = frame.width / 2.0
         layer.borderWidth = frame.width / 6.0
         layer.borderColor = UIColor.border.cgColor
         clipsToBounds = true
         autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        
-        if let color = color {
-            let view = UIView(frame: frame)
-            self.view.frame = view.frame.insetBy(dx: layer.borderWidth, dy: layer.borderWidth)
-            self.view.backgroundColor = color
-        }
-        
-        if let image = image {
-            let imageView = UIImageView(frame: frame)
-            self.imageView.frame = imageView.frame.insetBy(dx: layer.borderWidth, dy: layer.borderWidth)
-            self.imageView.image = image
-        }
-        
-        addSubview(view)
-        addSubview(imageView)
-    }
-    
-    override public init(frame: CGRect) {
-        super.init(frame: frame)
     }
     
     required init?(coder: NSCoder) {
@@ -61,20 +38,12 @@ final public class StatusView: UIView {
         layer.borderColor = UIColor.border.cgColor
     }
     
-    public func setImage(image: UIImage) {
-        self.imageView.image = image
+    public func set(image: UIImage?) {
+        self.image = image
     }
     
-    public func setColor(color: UIColor) {
-        self.view.backgroundColor = color
-    }
-    
-    public func display(type: DisplayType) {
-        switch type {
-        case .image:
-            bringSubviewToFront(imageView)
-        case .color:
-            bringSubviewToFront(view)
-        }
+    public func set(color: UIColor?) {
+        self.image = nil
+        self.backgroundColor = color
     }
 }
