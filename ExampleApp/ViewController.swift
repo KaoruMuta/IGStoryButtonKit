@@ -18,7 +18,7 @@ class ViewController: UIViewController {
         storyButton.backgroundColor = .clear
         storyButton.colors = [.yellow, .cyan, .black]
         storyButton.image = UIImage(named: "ramen")
-        storyButton.type = .unseen
+        storyButton.type = .status
         storyButton.addTarget(self, action: #selector(didTapped), for: .touchUpInside)
     }
     
