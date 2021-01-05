@@ -200,13 +200,13 @@ private extension IGStoryButton {
         if sender.state == .began {
             let originalTransform = transform
             let scaledTransform = originalTransform.scaledBy(x: Parameter.scale, y: Parameter.scale)
-            UIView.animate(withDuration: Parameter.duration, animations: { [weak self] in
-                self?.transform = scaledTransform
+            // HACK: perform animation
+            UIView.animate(withDuration: Parameter.duration, animations: {
+                print("animation starting")
             }) { [weak self] _ in
-                guard let originalTransform = self?.transform else { return }
-                let scaledTransform = originalTransform.scaledBy(x: Parameter.zoom, y: Parameter.zoom)
+                self?.transform = scaledTransform
                 UIView.animate(withDuration: Parameter.duration, animations: { [weak self] in
-                    self?.transform = scaledTransform
+                    self?.transform = .identity
                 })
             }
         }
