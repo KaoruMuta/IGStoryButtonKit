@@ -44,7 +44,7 @@ public protocol IGStoryButtonDelegate: class {
     }
     
     /// color type of indicatorLayer
-    public enum ColorType {
+    public enum ColorType: Equatable {
         /// orange and pink
         case `default`
         /// black and lightgray
