@@ -21,6 +21,7 @@ class ViewController: UIViewController {
         }
     }
     
+    private var models: [Story] = []
     private var displayTypes: [IGStoryButton.DisplayType] = []
     private var images: [UIImage?] = []
     private var descriptions: [String] = []
@@ -28,9 +29,13 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        displayTypes = [.seen, .unseen, .status(type: .color(of: .green)), .status(type: .image(of: UIImage(named: "ramen"))), .none]
-        images = [UIImage(named: "ramen"), UIImage(named: "ramen"), UIImage(named: "ramen"), UIImage(named: "ramen"), UIImage(named: "ramen")]
-        descriptions = ["seen", "unseen", "status (color)", "status (image)", "none"]
+        models = [
+            .init(image: UIImage(named: "ramen"), displayType: .seen, colorType: .black, description: "seen"),
+            .init(image: UIImage(named: "ramen"), displayType: .unseen, colorType: .default, description: "unseen"),
+            .init(image: UIImage(named: "ramen"), displayType: .status(type: .color(of: .green)), colorType: .clear, description: "status (color)"),
+            .init(image: UIImage(named: "ramen"), displayType: .status(type: .image(of: UIImage(named: "ramen"))), colorType: .clear, description: "status (image)"),
+            .init(image: UIImage(named: "ramen"), displayType: .none, colorType: .clear, description: "none"),
+        ]
         
         setUI()
     }
@@ -39,9 +44,9 @@ class ViewController: UIViewController {
         let button: IGStoryButton = {
             let button = IGStoryButton()
             button.frame = CGRect(origin: CGPoint(x: view.center.x - 50 / 2.0, y: view.center.y - 50 / 2.0), size: CGSize(width: 50, height: 50))
-            button.colors = [UIColor.cyan, UIColor.yellow, UIColor.gray]
             button.image = UIImage(named: "ramen")
-            button.type = .status(type: .color(of: .green))
+            button.displayType = .status(type: .color(of: .green))
+            button.colorType = .custom(colors: [.cyan, .yellow, .gray])
             return button
         }()
         view.addSubview(button)
@@ -64,12 +69,12 @@ extension ViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return displayTypes.count
+        return models.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as? StoryCell else { return UICollectionViewCell() }
-        cell.configure(displayType: displayTypes[indexPath.row], image: images[indexPath.row], text: descriptions[indexPath.row])
+        cell.configure(with: models[indexPath.row])
         return cell
     }
 }
