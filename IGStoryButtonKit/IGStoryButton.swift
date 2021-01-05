@@ -1,6 +1,6 @@
 //
 //  IGStoryButton.swift
-//  IGStoryUI
+//  IGStoryButtonKit
 //
 //  Created by k_muta on 2020/12/31.
 //

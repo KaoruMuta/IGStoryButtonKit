@@ -6,7 +6,7 @@
 //
 
 import UIKit
-import IGStoryUI
+import IGStoryButtonKit
 
 class StoryCell: UICollectionViewCell {
     

@@ -6,7 +6,7 @@
 //
 
 import UIKit
-import IGStoryUI
+import IGStoryButtonKit
 
 struct Story {
     let image: UIImage?
