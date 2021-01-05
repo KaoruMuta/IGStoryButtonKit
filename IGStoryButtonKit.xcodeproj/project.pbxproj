@@ -13,6 +13,11 @@
 		E27115E725A2E1FC00B6ACA6 /* StoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27115E525A2E1FC00B6ACA6 /* StoryCell.swift */; };
 		E27115E825A2E1FC00B6ACA6 /* StoryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E27115E625A2E1FC00B6ACA6 /* StoryCell.xib */; };
 		E27115FA25A41E1300B6ACA6 /* Story.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27115F925A41E1300B6ACA6 /* Story.swift */; };
+		E271162725A482D300B6ACA6 /* IGStoryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2CBC347259CD93800B92BA4 /* IGStoryButton.swift */; };
+		E271162A25A4859900B6ACA6 /* StatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27C03D425A1EEF700A1D1FC /* StatusView.swift */; };
+		E271162D25A4859B00B6ACA6 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27115D325A2CD6500B6ACA6 /* ContentView.swift */; };
+		E271163025A485B600B6ACA6 /* Const.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20FF10A25A18D59002E39FA /* Const.swift */; };
+		E271163325A485C600B6ACA6 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20FF10B25A18D59002E39FA /* Extensions.swift */; };
 		E27C03D525A1EEF700A1D1FC /* StatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27C03D425A1EEF700A1D1FC /* StatusView.swift */; };
 		E2CBC2F3259CD73700B92BA4 /* IGStoryButtonKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2CBC2E9259CD73700B92BA4 /* IGStoryButtonKit.framework */; };
 		E2CBC2F8259CD73700B92BA4 /* IGStoryButtonKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2CBC2F7259CD73700B92BA4 /* IGStoryButtonKitTests.swift */; };
@@ -371,6 +376,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				E2CBC2F8259CD73700B92BA4 /* IGStoryButtonKitTests.swift in Sources */,
+				E271163325A485C600B6ACA6 /* Extensions.swift in Sources */,
+				E271162725A482D300B6ACA6 /* IGStoryButton.swift in Sources */,
+				E271162D25A4859B00B6ACA6 /* ContentView.swift in Sources */,
+				E271162A25A4859900B6ACA6 /* StatusView.swift in Sources */,
+				E271163025A485B600B6ACA6 /* Const.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
