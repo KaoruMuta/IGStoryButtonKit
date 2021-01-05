@@ -14,7 +14,6 @@ struct KeyPath {
 struct Parameter {
     static let duration: Double = 0.3
     static let scale: CGFloat = 0.9
-    static let zoom: CGFloat = 1.0 / scale
 }
 
 struct Color {
