@@ -7,6 +7,7 @@
 
 import UIKit
 
+/// view located at center in IGStoryButton
 final public class ContentView: UIImageView {
     
     override public init(frame: CGRect) {
