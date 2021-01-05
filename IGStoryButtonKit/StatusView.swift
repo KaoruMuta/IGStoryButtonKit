@@ -7,13 +7,16 @@
 
 import UIKit
 
+/// view located at lower right in IGStoryButton
 final public class StatusView: UIImageView {
-    
+    /// enum for indicating type and deciding what StatusView displays
     public enum DisplayType {
+        /// if you want to display image in StatusView, use this and input image (UIImage?) into an argument
         case image(of: UIImage?)
+        /// if you want to set color in StatusView, use this and input color (UIColor?) into an argument
         case color(of: UIColor?)
     }
-    
+
     override public init(frame: CGRect) {
         super.init(frame: frame)
         layer.cornerRadius = frame.width / 2.0
@@ -40,10 +43,11 @@ final public class StatusView: UIImageView {
 }
 
 public extension StatusView {
+    /// funciton to set image in StatusView
     func set(image: UIImage?) {
         self.image = image
     }
-    
+    /// function to set color in StatusView
     func set(color: UIColor?) {
         self.image = nil
         self.backgroundColor = color
