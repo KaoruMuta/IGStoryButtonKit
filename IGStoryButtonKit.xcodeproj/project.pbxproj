@@ -113,6 +113,35 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E271161B25A458D200B6ACA6 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				E27115F925A41E1300B6ACA6 /* Story.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		E271161E25A4593400B6ACA6 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				E2CBC330259CD8D200B92BA4 /* ViewController.swift */,
+				E27115E525A2E1FC00B6ACA6 /* StoryCell.swift */,
+				E27115E625A2E1FC00B6ACA6 /* StoryCell.xib */,
+				E2CBC332259CD8D200B92BA4 /* Main.storyboard */,
+				E2CBC337259CD8D300B92BA4 /* LaunchScreen.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		E271161F25A4594400B6ACA6 /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				E2CBC32C259CD8D200B92BA4 /* AppDelegate.swift */,
+				E2CBC32E259CD8D200B92BA4 /* SceneDelegate.swift */,
+			);
+			path = Application;
+			sourceTree = "<group>";
+		};
 		E2CBC2DF259CD73700B92BA4 = {
 			isa = PBXGroup;
 			children = (
@@ -160,17 +189,10 @@
 		E2CBC32B259CD8D200B92BA4 /* ExampleApp */ = {
 			isa = PBXGroup;
 			children = (
+				E271161F25A4594400B6ACA6 /* Application */,
+				E271161E25A4593400B6ACA6 /* View */,
+				E271161B25A458D200B6ACA6 /* Model */,
 				E2CBC35F259E447F00B92BA4 /* Resource */,
-				E2CBC32C259CD8D200B92BA4 /* AppDelegate.swift */,
-				E2CBC32E259CD8D200B92BA4 /* SceneDelegate.swift */,
-				E2CBC330259CD8D200B92BA4 /* ViewController.swift */,
-				E27115F925A41E1300B6ACA6 /* Story.swift */,
-				E2CBC332259CD8D200B92BA4 /* Main.storyboard */,
-				E2CBC335259CD8D300B92BA4 /* Assets.xcassets */,
-				E2CBC337259CD8D300B92BA4 /* LaunchScreen.storyboard */,
-				E2CBC33A259CD8D300B92BA4 /* Info.plist */,
-				E27115E525A2E1FC00B6ACA6 /* StoryCell.swift */,
-				E27115E625A2E1FC00B6ACA6 /* StoryCell.xib */,
 			);
 			path = ExampleApp;
 			sourceTree = "<group>";
@@ -185,6 +207,8 @@
 		E2CBC35F259E447F00B92BA4 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				E2CBC335259CD8D300B92BA4 /* Assets.xcassets */,
+				E2CBC33A259CD8D300B92BA4 /* Info.plist */,
 				E2CBC364259E4A9500B92BA4 /* ramen.png */,
 			);
 			path = Resource;
@@ -619,7 +643,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 7978CN5FM3;
-				INFOPLIST_FILE = ExampleApp/Info.plist;
+				INFOPLIST_FILE = ExampleApp/Resource/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -639,7 +663,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 7978CN5FM3;
-				INFOPLIST_FILE = ExampleApp/Info.plist;
+				INFOPLIST_FILE = ExampleApp/Resource/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
