@@ -20,4 +20,3 @@ extension CALayer {
         self.add(animation, forKey: forKey)
     }
 }
-

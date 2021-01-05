@@ -1,0 +1,30 @@
+disabled_rules:
+  - type_name
+  - trailing_whitespace # allow to have a space
+  - unused_closure_parameter # allow to exist unused parameter
+  - force_cast
+  - force_try
+opt_in_rules:
+
+included:
+  - IGStoryButtonKit
+
+line_length: 300
+
+type_body_length:
+  - 300
+
+variable_name_max_length:
+  - 60
+
+variable_name_min_length:
+  - 1 # warning
+  - 0 # error
+
+identifier_name:
+  min_length: 2
+
+cyclomatic_complexity: 20
+
+function_body_length:
+  - 100
