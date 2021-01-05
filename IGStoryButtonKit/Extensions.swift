@@ -1,6 +1,6 @@
 //
 //  Extensions.swift
-//  IGStoryUI
+//  IGStoryButtonKit
 //
 //  Created by k_muta on 2021/01/03.
 //
