@@ -20,14 +20,14 @@ class StoryCell: UICollectionViewCell {
         storyButton.addTarget(self, action: #selector(didTapped), for: .touchUpInside)
     }
     
-    func configure(displayType: IGStoryButton.DisplayType, image: UIImage?, text: String) {
-        storyButton.type = displayType
-        storyButton.image = image
-        descriptionLabel.text = text
+    func configure(with model: Story) {
+        storyButton.displayType = model.displayType
+        storyButton.image = model.image
+        descriptionLabel.text = model.description
     }
     
     @objc func didTapped() {
-        switch storyButton.type {
+        switch storyButton.displayType {
         case .seen:
             storyButton.startAnimating()
             DispatchQueue.main.asyncAfter(deadline: .now() + 2) { [weak self] in
@@ -36,7 +36,7 @@ class StoryCell: UICollectionViewCell {
         case .unseen:
             storyButton.startAnimating()
             DispatchQueue.main.asyncAfter(deadline: .now() + 2) { [weak self] in
-                self?.storyButton.type = .seen
+                self?.storyButton.displayType = .seen
                 self?.storyButton.stopAnimating()
             }
         case .status, .none:
