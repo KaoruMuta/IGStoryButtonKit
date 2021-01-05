@@ -37,6 +37,14 @@ public protocol IGStoryButtonDelegate: class {
         }
     }
     
+    public enum ColorType {
+        case `default`
+        case black
+        case green
+        case clear
+        case custom(colors: [UIColor])
+    }
+    
     public weak var delegate: IGStoryButtonDelegate?
     
     public var statusView: StatusView!
@@ -47,15 +55,15 @@ public protocol IGStoryButtonDelegate: class {
         }
     }
     
-    public var colors: [UIColor] = [.red, .orange] {
+    public var colorType: ColorType = .default {
         didSet {
-            indicatorLayer.colors = colors.map { $0.cgColor }
+            update(by: colorType)
         }
     }
     
-    public var type: DisplayType = .none {
+    public var displayType: DisplayType = .none {
         didSet {
-            update(by: type)
+            update(by: displayType)
         }
     }
     
@@ -78,9 +86,9 @@ public protocol IGStoryButtonDelegate: class {
     }()
     
     // MARK: - Initializer
-    public init(frame: CGRect, displayType: DisplayType, image: UIImage?, colors: [UIColor]) {
+    public init(frame: CGRect, displayType: DisplayType, colorType: ColorType, image: UIImage?) {
         super.init(frame: frame)
-        configure(displayType: displayType, image: image, colors: colors)
+        configure(displayType: displayType, colorType: colorType, image: image)
     }
     
     override public init(frame: CGRect) {
@@ -104,20 +112,20 @@ public protocol IGStoryButtonDelegate: class {
         configureLayout()
     }
     
-    private func configure(displayType: DisplayType = .none, image: UIImage? = nil, colors: [UIColor] = [.red, .orange]) {
+    private func configure(displayType: DisplayType = .none, colorType: ColorType = .default, image: UIImage? = nil) {
         configureView()
         configureLayer()
         configureLayout()
         configureRecognizer()
         
         contentView.image = image
-        indicatorLayer.colors = colors.map { $0.cgColor }
         layer.addSublayer(indicatorLayer)
         layer.addSublayer(intermediateLayer)
         addSubview(contentView)
         addSubview(statusView)
         
         update(by: displayType)
+        update(by: colorType)
     }
 }
 
@@ -189,18 +197,35 @@ private extension IGStoryButton {
         }
     }
     
+    func update(by colorType: ColorType) {
+        switch colorType {
+        case .default:
+            let colors = Color.pink
+            indicatorLayer.colors = colors.map { $0.cgColor }
+        case .black:
+            let colors = Color.black
+            indicatorLayer.colors = colors.map { $0.cgColor }
+        case .green:
+            let colors = Color.green
+            indicatorLayer.colors = colors.map { $0.cgColor }
+        case .clear:
+            let colors = Color.clear
+            indicatorLayer.colors = colors.map { $0.cgColor }
+        case .custom(let colors):
+            indicatorLayer.colors = colors.map { $0.cgColor }
+        }
+    }
+    
     func update(by displayType: DisplayType) {
         switch displayType {
         case .seen:
-            indicatorLayer.isHidden = false
+            update(by: .black)
             statusView.isHidden = true
-            indicatorLayer.colors = [UIColor.black.cgColor, UIColor.white.cgColor]
         case .unseen:
-            indicatorLayer.isHidden = false
+            update(by: .default)
             statusView.isHidden = true
-            indicatorLayer.colors = colors.map { $0.cgColor }
         case .status(let type):
-            indicatorLayer.isHidden = true
+            update(by: .clear)
             statusView.isHidden = false
             switch type {
             case .color(let color):
@@ -209,7 +234,7 @@ private extension IGStoryButton {
                 statusView.set(image: image)
             }
         case .none:
-            indicatorLayer.isHidden = true
+            update(by: .clear)
             statusView.isHidden = true
         }
     }

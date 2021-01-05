@@ -16,3 +16,10 @@ struct Parameter {
     static let scale: CGFloat = 0.9
     static let zoom: CGFloat = 1.0 / scale
 }
+
+struct Color {
+    static let pink = [UIColor.systemPink, UIColor.orange]
+    static let black = [UIColor.black, UIColor.lightGray]
+    static let green = [UIColor.green, UIColor.green]
+    static let clear = [UIColor.clear]
+}
