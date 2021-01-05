@@ -16,7 +16,7 @@ public protocol IGStoryButtonDelegate: class {
 }
 
 @IBDesignable open class IGStoryButton: UIButton {
-    // MARK: - public access property
+    // MARK: - public access DataType
     public enum DisplayType: Equatable {
         case seen
         case unseen
@@ -45,6 +45,17 @@ public protocol IGStoryButtonDelegate: class {
         case custom(colors: [UIColor])
     }
     
+    public struct TypeCondition {
+        var color: ColorType
+        var display: DisplayType
+        
+        public init(color: ColorType, display: DisplayType) {
+            self.color = color
+            self.display = display
+        }
+    }
+    
+    // MARK: - public access property
     public weak var delegate: IGStoryButtonDelegate?
     
     public var statusView: StatusView!
@@ -55,16 +66,19 @@ public protocol IGStoryButtonDelegate: class {
         }
     }
     
-    public var colorType: ColorType = .default {
+    public var condition: TypeCondition = .init(color: .default, display: .none) {
         didSet {
-            update(by: colorType)
+            update(by: condition.display)
+            update(by: condition.color)
         }
     }
     
-    public var displayType: DisplayType = .none {
-        didSet {
-            update(by: displayType)
-        }
+    public var colorType: ColorType {
+        condition.color
+    }
+    
+    public var displayType: DisplayType {
+        condition.display
     }
     
     // MARK: - private access property
