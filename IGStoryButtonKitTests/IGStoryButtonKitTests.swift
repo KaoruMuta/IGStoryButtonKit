@@ -36,22 +36,22 @@ class IGStoryButtonKitTests: XCTestCase {
         let mockImage: UIImage? = .init()
         
         storyButton.condition = .init(color: .black, display: .seen)
+        XCTAssertEqual(storyButton.colorType, .black)
+        XCTAssertNotEqual(storyButton.colorType, .default)
         XCTAssertEqual(storyButton.displayType, .seen)
         XCTAssertNotEqual(storyButton.displayType, .unseen)
         
-        storyButton.condition = .init(color: .black, display: .unseen)
-        XCTAssertEqual(storyButton.displayType, .unseen)
-        
-        storyButton.condition = .init(color: .black, display: .status(type: .color(of: .green)))
+        storyButton.condition = .init(color: .clear, display: .status(type: .color(of: .green)))
         XCTAssertEqual(storyButton.displayType, .status(type: .color(of: .green)))
         XCTAssertNotEqual(storyButton.displayType, .status(type: .color(of: .red)))
         
-        storyButton.condition = .init(color: .black, display: .status(type: .image(of: mockImage)))
+        storyButton.condition = .init(color: .default, display: .status(type: .image(of: mockImage)))
         XCTAssertEqual(storyButton.displayType, .status(type: .image(of: mockImage)))
         XCTAssertNotEqual(storyButton.displayType, .status(type: .image(of: nil)))
         
-        storyButton.condition = .init(color: .black, display: .none)
-        XCTAssertEqual(storyButton.displayType, .none)
+        storyButton.condition = .init(color: .custom(colors: [.red, .green]), display: .none)
+        XCTAssertEqual(storyButton.colorType, .custom(colors: [.red, .green]))
+        XCTAssertNotEqual(storyButton.colorType, .custom(colors: [.red]))
     }
 
 }
