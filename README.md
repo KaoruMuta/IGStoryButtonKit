@@ -2,6 +2,11 @@
 <img src="https://github.com/KaoruMuta/IGStoryButtonKit/blob/master/assets/logo.png">
 </p>
 
+![Swift-version](https://img.shields.io/badge/swift-5.3%2B-orange)
+![CocoaPods](https://img.shields.io/badge/pod-v1.0.0-red)
+![Carthage](https://img.shields.io/badge/carthage-compatible-blue)
+![License](https://img.shields.io/github/license/KaoruMuta/IGStoryButtonKit)
+
 # Introduction
 Have you ever seen UI like instagram story, haven't you?
 Actually, features like instagram story have been implemented in many applications recently. 
@@ -67,8 +72,8 @@ storyButton.stopAnimating()
 IGStoryButton is initialized by code or interface builder, but the size of width and height is `required to be equal`. If the size of width is different from one of width, `fatalError("The size of width and height are required to be equal")` is expected to be occurred.
 
 # Requirements
-Swift 5.0+<br>
-Xcode 11.0+
+Swift 5.3+<br>
+Xcode 12.0+
 
 # Installation
 ## CocoaPods
@@ -80,12 +85,14 @@ end
 ```
 
 ## Carthage
+Coming soon
 
 ## Swift Package Manager
+Enter this: `https://github.com/KaoruMuta/IGStoryButtonKit` as Swift Package
 
 
 # Contribution
-If you find any issue, please let me know on Issues. Also, If you propose and implement new features, please open Pull Requests. 
+If you find any issue, please let me know on Issues. Also, If you propose and implement new features, please open Pull Requests following templates. 
 
 Let's discuss together to improve that this OSS becomes more convenient for developers!
 p.s. I'm really happy and improve a motivation to give me star :)
