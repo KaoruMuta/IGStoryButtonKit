@@ -45,7 +45,7 @@ class ViewController: UIViewController {
             let button = IGStoryButton()
             button.frame = CGRect(origin: CGPoint(x: view.center.x - 50 / 2.0, y: view.center.y - 50 / 2.0), size: CGSize(width: 50, height: 50))
             button.image = UIImage(named: "ramen")
-            button.condition = .init(color: .custom(colors: [.cyan, .yellow, .gray]), display: .status(type: .color(of: .green)))
+            button.condition = .init(display: .status(type: .color(of: .green)), color: .custom(colors: [.cyan, .yellow, .gray]))
             return button
         }()
         view.addSubview(button)

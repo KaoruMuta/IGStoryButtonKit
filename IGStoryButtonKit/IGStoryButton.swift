@@ -59,12 +59,12 @@ public protocol IGStoryButtonDelegate: class {
     
     /// structure consisted of ColorType and DisplayType
     public struct TypeCondition {
-        var color: ColorType
         var display: DisplayType
+        var color: ColorType?
         
-        public init(color: ColorType, display: DisplayType) {
-            self.color = color
+        public init(display: DisplayType, color: ColorType? = nil) {
             self.display = display
+            self.color = color
         }
     }
     
@@ -78,14 +78,14 @@ public protocol IGStoryButtonDelegate: class {
         }
     }
     /// property of injecting contents from code
-    public var condition: TypeCondition = .init(color: .default, display: .none) {
+    public var condition: TypeCondition = .init(display: .none) {
         didSet {
             update(by: condition.display)
             update(by: condition.color)
         }
     }
     /// read-only property of colorType
-    public var colorType: ColorType {
+    public var colorType: ColorType? {
         condition.color
     }
     /// read-only property of displayType
@@ -246,7 +246,9 @@ private extension IGStoryButton {
     }
     
     /// update colors of indicatorLayer by colorType
-    func update(by colorType: ColorType) {
+    func update(by colorType: ColorType?) {
+        // if colorType is nil, do nothing
+        guard let colorType = colorType else { return }
         switch colorType {
         case .default:
             let colors = Color.pink
