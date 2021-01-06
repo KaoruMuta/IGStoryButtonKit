@@ -49,8 +49,6 @@ public protocol IGStoryButtonDelegate: class {
         case `default`
         /// black and lightgray
         case black
-        /// green
-        case green
         /// clear
         case clear
         /// custom setting if inputting colors you want into an argument
@@ -255,9 +253,6 @@ private extension IGStoryButton {
             indicatorLayer.colors = colors.map { $0.cgColor }
         case .black:
             let colors = Color.black
-            indicatorLayer.colors = colors.map { $0.cgColor }
-        case .green:
-            let colors = Color.green
             indicatorLayer.colors = colors.map { $0.cgColor }
         case .clear:
             let colors = Color.clear
