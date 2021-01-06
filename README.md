@@ -16,13 +16,17 @@ The appearance of IGStoryButton depends on these display types.
 ## Color Type
 Circle ring which surrounds IGStoryButton has four color types: `default`, `black`, `clear`, `custom` as the part of `IGStoryButton.ColorType`.
 
+||default|black|clear|custom(colors:)|
+|----|----|----|----|----|
+|actual value|`[UIColor.systemPink, UIColor.orange]`|`[UIColor.black, UIColor.lightGray]`|`[UIColor.clear]`|value set in argument|
+
 ## Appearance by specific display and color types
 The detail is as follows. Once you only set DisplayType, color of outside circle ring is automatically set as default color for the first time.
 
 ||seen|unseen|status(color:)|status(image:)|none|
 |----|----|----|----|----|----|
 |appearance|<img src="assets/DisplayType.seen.png">|<img src="assets/DisplayType.unseen.png">|<img src="assets/DisplayType.status.color.png">|<img src="assets/DisplayType.status.image.png">|<img src="assets/DisplayType.none.png">|
-|default color|ColorType.black (`[UIColor.black, UIColor.lightGray]`)|ColorType.default (`[UIColor.systemPink, UIColor.orange]`)|ColorType.clear (`[UIColor.clear]`)|ColorType.clear (`[UIColor.clear]`)|ColorType.clear (`[UIColor.clear]`)|
+|default color|ColorType.black|ColorType.default|ColorType.clear|ColorType.clear|ColorType.clear|
 
 ## Customize Color and Image
 You can customize which color is set to circle ring, status view in the lower right named in `statusView` after that and which image is set to status as follows. If you configure display and color type of IGStoryButton, you set value to the property named `condition` derived from `IGStoryButton.TypeCondition` consisted of `IGStoryButton.DisplayType`, `IGStoryButton.ColorType`.
