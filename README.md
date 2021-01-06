@@ -29,11 +29,14 @@ The detail is as follows. Once you only set DisplayType, color of outside circle
 |default color|ColorType.black|ColorType.default|ColorType.clear|ColorType.clear|ColorType.clear|
 
 ## Customize Color and Image
-You can customize which color is set to circle ring, status view in the lower right named in `statusView` after that and which image is set to status as follows. If you configure display and color type of IGStoryButton, you set value to the property named `condition` derived from `IGStoryButton.TypeCondition` consisted of `IGStoryButton.DisplayType`, `IGStoryButton.ColorType`.
+You can customize which color is set to circle ring, status view in the lower right named in `statusView` after that and which image is set to status as follows. If you configure display and color type of IGStoryButton, you first import `IGStoryButtonKit` and set value to the property named `condition` derived from `IGStoryButton.TypeCondition` consisted of `IGStoryButton.DisplayType`, `IGStoryButton.ColorType`.
 
 Please refer to these codes, comments and implementation of sample app named in `ExampleApp`.
 
 ```swift
+// import this module
+import IGStoryButtonKit
+
 // storyButton: instance after initialization via code or interface builder
 // set displayType as .seen, and default color is set to color of circle ring because colorType is not set specifically 
 storyButton.condition = .init(display: .seen)
