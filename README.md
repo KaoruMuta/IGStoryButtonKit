@@ -72,6 +72,12 @@ Xcode 11.0+
 
 # Installation
 ## CocoaPods
+Add the following to your Podfile:
+```rb
+target 'MyApp' do
+  pod 'IGStoryButtonKit'
+end
+```
 
 ## Carthage
 
