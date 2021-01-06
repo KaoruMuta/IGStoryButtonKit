@@ -72,6 +72,7 @@ IGStoryButton is initialized by code or interface builder, but the size of width
 
 # Requirements
 Swift 5.3+<br>
+iOS 13.0+<br>
 Xcode 12.0+
 
 # Installation
