@@ -1,5 +1,5 @@
 <p align="center">
-<img src="assets/logo.png">
+<img src="https://github.com/KaoruMuta/IGStoryButtonKit/blob/master/assets/logo.png">
 </p>
 
 # Introduction
@@ -25,7 +25,7 @@ The detail is as follows. Once you only set DisplayType, color of outside circle
 
 ||seen|unseen|status(color:)|status(image:)|none|
 |----|----|----|----|----|----|
-|appearance|<img src="assets/DisplayType.seen.png">|<img src="assets/DisplayType.unseen.png">|<img src="assets/DisplayType.status.color.png">|<img src="assets/DisplayType.status.image.png">|<img src="assets/DisplayType.none.png">|
+|appearance|<img src="https://github.com/KaoruMuta/IGStoryButtonKit/blob/master/assets/DisplayType.seen.png">|<img src="https://github.com/KaoruMuta/IGStoryButtonKit/blob/master/assets/DisplayType.unseen.png">|<img src="https://github.com/KaoruMuta/IGStoryButtonKit/blob/master/assets/DisplayType.status.color.png">|<img src="https://github.com/KaoruMuta/IGStoryButtonKit/blob/master/assets/DisplayType.status.image.png">|<img src="https://github.com/KaoruMuta/IGStoryButtonKit/blob/master/assets/DisplayType.none.png">|
 |default color|ColorType.black|ColorType.default|ColorType.clear|ColorType.clear|ColorType.clear|
 
 ## Customize Color and Image
@@ -72,7 +72,7 @@ Xcode 11.0+
 
 # Installation
 ## CocoaPods
-Add the following to your Podfile:
+Add following to your Podfile and execute `pod install`
 ```rb
 target 'MyApp' do
   pod 'IGStoryButtonKit'
@@ -83,10 +83,12 @@ end
 
 ## Swift Package Manager
 
+
 # Contribution
 If you find any issue, please let me know on Issues. Also, If you propose and implement new features, please open Pull Requests. 
 
 Let's discuss together to improve that this OSS becomes more convenient for developers!
+p.s. I'm really happy and improve a motivation to give me star :)
 
 # Future Work
 - [ ] Introduce loading animation with dash line to make current animation richer (High Priority, but it seems difficult)
