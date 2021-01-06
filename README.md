@@ -4,7 +4,6 @@
 
 ![Swift-version](https://img.shields.io/badge/swift-5.3%2B-orange)
 ![CocoaPods](https://img.shields.io/badge/pod-v1.0.0-red)
-![Carthage](https://img.shields.io/badge/carthage-compatible-blue)
 ![License](https://img.shields.io/github/license/KaoruMuta/IGStoryButtonKit)
 
 # Introduction
