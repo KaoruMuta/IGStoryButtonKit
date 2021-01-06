@@ -22,6 +22,5 @@ struct Parameter {
 struct Color {
     static let pink = [UIColor.systemPink, UIColor.orange]
     static let black = [UIColor.black, UIColor.lightGray]
-    static let green = [UIColor.green, UIColor.green]
     static let clear = [UIColor.clear]
 }
