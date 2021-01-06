@@ -22,7 +22,7 @@ class StoryCell: UICollectionViewCell {
     
     func configure(with model: Story) {
         storyButton.image = model.image
-        storyButton.condition = .init(color: model.colorType, display: model.displayType)
+        storyButton.condition = .init(display: model.displayType, color: model.colorType)
         descriptionLabel.text = model.description
     }
     
@@ -36,7 +36,7 @@ class StoryCell: UICollectionViewCell {
         case .unseen:
             storyButton.startAnimating()
             DispatchQueue.main.asyncAfter(deadline: .now() + 2) { [weak self] in
-                self?.storyButton.condition = .init(color: .default, display: .seen) 
+                self?.storyButton.condition = .init(display: .seen) 
                 self?.storyButton.stopAnimating()
             }
         case .status, .none:
