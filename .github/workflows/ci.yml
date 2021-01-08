@@ -8,12 +8,12 @@ on:
 
 jobs:
   build:
-
     runs-on: macos-latest
-
     steps:
     - uses: actions/checkout@v2
-    - name: Build
-      run: swift build -v
+    - name: Select Xcode 12
+      run: sudo xcode-select -s /Applications/Xcode_12.app/Contents/Developer
+    - name: Check Xcode version
+      run: xcodebuild -version
     - name: Run tests
       run: swift test -v
