@@ -13,7 +13,7 @@ jobs:
         xcode_version:
           - 11.2.1
         destination:
-          - "platform=iOS Simulator,name=iPhone 11,OS=13.2"
+          - "platform=iOS Simulator,name=iPhone 11,OS=13.2.2"
     runs-on: macos-10.15
     steps:
     - uses: actions/checkout@v2
