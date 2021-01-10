@@ -20,7 +20,7 @@
 		E271163325A485C600B6ACA6 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20FF10B25A18D59002E39FA /* Extensions.swift */; };
 		E27C03D525A1EEF700A1D1FC /* StatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27C03D425A1EEF700A1D1FC /* StatusView.swift */; };
 		E2CBC2F3259CD73700B92BA4 /* IGStoryButtonKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2CBC2E9259CD73700B92BA4 /* IGStoryButtonKit.framework */; };
-		E2CBC2F8259CD73700B92BA4 /* IGStoryButtonKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2CBC2F7259CD73700B92BA4 /* IGStoryButtonKitTests.swift */; };
+		E2CBC2F8259CD73700B92BA4 /* IGStoryButtonTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2CBC2F7259CD73700B92BA4 /* IGStoryButtonTest.swift */; };
 		E2CBC2FA259CD73700B92BA4 /* IGStoryButtonKit.h in Headers */ = {isa = PBXBuildFile; fileRef = E2CBC2EC259CD73700B92BA4 /* IGStoryButtonKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E2CBC32D259CD8D200B92BA4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2CBC32C259CD8D200B92BA4 /* AppDelegate.swift */; };
 		E2CBC32F259CD8D200B92BA4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2CBC32E259CD8D200B92BA4 /* SceneDelegate.swift */; };
@@ -77,7 +77,7 @@
 		E2CBC2EC259CD73700B92BA4 /* IGStoryButtonKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IGStoryButtonKit.h; sourceTree = "<group>"; };
 		E2CBC2ED259CD73700B92BA4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E2CBC2F2259CD73700B92BA4 /* IGStoryButtonKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = IGStoryButtonKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		E2CBC2F7259CD73700B92BA4 /* IGStoryButtonKitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IGStoryButtonKitTests.swift; sourceTree = "<group>"; };
+		E2CBC2F7259CD73700B92BA4 /* IGStoryButtonTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IGStoryButtonTest.swift; sourceTree = "<group>"; };
 		E2CBC2F9259CD73700B92BA4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E2CBC32A259CD8D200B92BA4 /* ExampleApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ExampleApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E2CBC32C259CD8D200B92BA4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -185,7 +185,7 @@
 		E2CBC2F6259CD73700B92BA4 /* IGStoryButtonKitTests */ = {
 			isa = PBXGroup;
 			children = (
-				E2CBC2F7259CD73700B92BA4 /* IGStoryButtonKitTests.swift */,
+				E2CBC2F7259CD73700B92BA4 /* IGStoryButtonTest.swift */,
 				E2CBC2F9259CD73700B92BA4 /* Info.plist */,
 			);
 			path = IGStoryButtonKitTests;
@@ -397,7 +397,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E2CBC2F8259CD73700B92BA4 /* IGStoryButtonKitTests.swift in Sources */,
+				E2CBC2F8259CD73700B92BA4 /* IGStoryButtonTest.swift in Sources */,
 				E271163325A485C600B6ACA6 /* Extensions.swift in Sources */,
 				E271162725A482D300B6ACA6 /* IGStoryButton.swift in Sources */,
 				E271162D25A4859B00B6ACA6 /* ContentView.swift in Sources */,
