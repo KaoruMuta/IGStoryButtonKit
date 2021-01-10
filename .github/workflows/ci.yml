@@ -16,4 +16,9 @@ jobs:
     - name: Check Xcode version
       run: xcodebuild -version
     - name: Run tests
-      run: swift test -v
+      run: xcodebuild \
+            -project IGStoryButtonKit.xcodeproj \
+            -scheme IGStoryButtonKit \
+            -sdk iphonesimulator \
+            -destination "platform=iOS Simulator,name=iPhone 11,OS=14.3" \
+            test
