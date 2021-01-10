@@ -16,10 +16,10 @@ jobs:
           - platform=iOS Simulator,name=iPhone 11,OS=13.2.2
     runs-on: macos-10.15
     steps:
-    - uses: actions/checkout@v2
-    - name: Select Xcode
-      run: sudo xcode-select -s /Applications/Xcode_${{ matrix.xcode_version }}.app/Contents/Developer
-    - name: Check Xcode version
-      run: xcodebuild -version
-    - name: Run tests
-      run: xcodebuild -project IGStoryButtonKit.xcodeproj -scheme IGStoryButtonKit -sdk iphonesimulator -destination "${{ matrix.destination }}" test
+      - uses: actions/checkout@v2
+      - name: Select Xcode
+        run: sudo xcode-select -s /Applications/Xcode_${{ matrix.xcode_version }}.app/Contents/Developer
+      - name: Check Xcode version
+        run: xcodebuild -version
+      - name: Run tests
+        run: xcodebuild -project IGStoryButtonKit.xcodeproj -scheme IGStoryButtonKit -sdk iphonesimulator -destination "${{ matrix.destination }}" test
