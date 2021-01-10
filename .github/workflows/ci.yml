@@ -8,12 +8,18 @@ on:
 
 jobs:
   build:
-    runs-on: macos-latest
+    strategy:
+      matrix:
+        xcode_version: 11.2.1
+        platform: iOS Simulator
+        name: iPhone 11
+        os: 13.2
+    runs-on: macos-10.15
     steps:
     - uses: actions/checkout@v2
-    - name: Select Xcode 12
-      run: sudo xcode-select -s /Applications/Xcode_12.app/Contents/Developer
+    - name: Select Xcode
+      run: sudo xcode-select -s /Applications/Xcode_${{ matrix.xcode_version }}.app/Contents/Developer
     - name: Check Xcode version
       run: xcodebuild -version
     - name: Run tests
-      run: xcodebuild -project IGStoryButtonKit.xcodeproj -scheme IGStoryButtonKit -sdk iphonesimulator -destination "platform=iOS Simulator,name=iPhone 11,OS=13.2.2" test
+      run: xcodebuild -project IGStoryButtonKit.xcodeproj -scheme IGStoryButtonKit -sdk iphonesimulator -destination "platform=${{ matrix.platform }},name=${{ matrix.name }},OS=${{ matrix.os }}" test
