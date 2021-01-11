@@ -142,7 +142,7 @@ public protocol IGStoryButtonDelegate: class {
     
     override public func layoutSubviews() {
         super.layoutSubviews()
-        assert(frame.width == frame.height, "The size of width and height are required to be equal")
+        precondition(frame.width == frame.height, "The size of width and height are required to be equal")
         // arrange layout
         configureLayout()
     }
