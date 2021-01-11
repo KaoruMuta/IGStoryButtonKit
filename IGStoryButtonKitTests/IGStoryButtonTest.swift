@@ -22,18 +22,19 @@ final class IGStoryButtonTests: XCTestCase {
         let storyButton = IGStoryButton(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
         let mockImage: UIImage? = .init()
         
-        storyButton.condition = .init(display: .seen, color: .black)
-        XCTAssertEqual(storyButton.colorType, .black)
-        XCTAssertNotEqual(storyButton.colorType, .default)
+        storyButton.condition = .init(display: .seen)
         XCTAssertEqual(storyButton.displayType, .seen)
-        XCTAssertNotEqual(storyButton.displayType, .unseen)
+        XCTAssertEqual(storyButton.colorType, nil)
+        
+        storyButton.condition = .init(display: .unseen, color: .default)
+        XCTAssertEqual(storyButton.displayType, .unseen)
+        XCTAssertEqual(storyButton.colorType, .default)
         
         storyButton.condition = .init(display: .status(type: .color(of: .green)))
-        XCTAssertEqual(storyButton.colorType, nil)
         XCTAssertEqual(storyButton.displayType, .status(type: .color(of: .green)))
         XCTAssertNotEqual(storyButton.displayType, .status(type: .color(of: .red)))
         
-        storyButton.condition = .init(display: .status(type: .image(of: mockImage)), color: .default)
+        storyButton.condition = .init(display: .status(type: .image(of: mockImage)))
         XCTAssertEqual(storyButton.displayType, .status(type: .image(of: mockImage)))
         XCTAssertNotEqual(storyButton.displayType, .status(type: .image(of: nil)))
         
