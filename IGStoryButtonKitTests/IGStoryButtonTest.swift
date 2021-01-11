@@ -9,8 +9,16 @@ import XCTest
 @testable import IGStoryButtonKit
 
 final class IGStoryButtonTests: XCTestCase {
-    // MARK: - Unit tests
-    func testManipulateType() {
+    // MARK: - Unit tests for IGStoryButton
+    func testInitWithFrame() {
+        let storyButton = IGStoryButton()
+        XCTAssertEqual(storyButton.frame, .zero)
+        storyButton.frame = CGRect(x: 0, y: 0, width: 100, height: 100)
+        XCTAssertEqual(storyButton.frame.width, 100)
+        XCTAssertEqual(storyButton.frame.height, 100)
+    }
+    
+    func testDisplayTypeAndColorTypeIsValid() {
         let storyButton = IGStoryButton(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
         let mockImage: UIImage? = .init()
         
@@ -33,5 +41,4 @@ final class IGStoryButtonTests: XCTestCase {
         XCTAssertEqual(storyButton.colorType, .custom(colors: [.red, .green]))
         XCTAssertNotEqual(storyButton.colorType, .custom(colors: [.red]))
     }
-
 }
