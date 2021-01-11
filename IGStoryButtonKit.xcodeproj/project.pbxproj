@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		E20FF10C25A18D59002E39FA /* Const.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20FF10A25A18D59002E39FA /* Const.swift */; };
 		E20FF10D25A18D59002E39FA /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20FF10B25A18D59002E39FA /* Extensions.swift */; };
+		E2599B9325AC5D050093E009 /* MockViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2599B9225AC5D050093E009 /* MockViewController.swift */; };
 		E27115D425A2CD6500B6ACA6 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27115D325A2CD6500B6ACA6 /* ContentView.swift */; };
 		E27115E725A2E1FC00B6ACA6 /* StoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27115E525A2E1FC00B6ACA6 /* StoryCell.swift */; };
 		E27115E825A2E1FC00B6ACA6 /* StoryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E27115E625A2E1FC00B6ACA6 /* StoryCell.xib */; };
@@ -68,6 +69,7 @@
 /* Begin PBXFileReference section */
 		E20FF10A25A18D59002E39FA /* Const.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Const.swift; sourceTree = "<group>"; };
 		E20FF10B25A18D59002E39FA /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		E2599B9225AC5D050093E009 /* MockViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockViewController.swift; sourceTree = "<group>"; };
 		E27115D325A2CD6500B6ACA6 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		E27115E525A2E1FC00B6ACA6 /* StoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryCell.swift; sourceTree = "<group>"; };
 		E27115E625A2E1FC00B6ACA6 /* StoryCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StoryCell.xib; sourceTree = "<group>"; };
@@ -186,6 +188,7 @@
 			isa = PBXGroup;
 			children = (
 				E2CBC2F7259CD73700B92BA4 /* IGStoryButtonTest.swift */,
+				E2599B9225AC5D050093E009 /* MockViewController.swift */,
 				E2CBC2F9259CD73700B92BA4 /* Info.plist */,
 			);
 			path = IGStoryButtonKitTests;
@@ -400,6 +403,7 @@
 				E2CBC2F8259CD73700B92BA4 /* IGStoryButtonTest.swift in Sources */,
 				E271163325A485C600B6ACA6 /* Extensions.swift in Sources */,
 				E271162725A482D300B6ACA6 /* IGStoryButton.swift in Sources */,
+				E2599B9325AC5D050093E009 /* MockViewController.swift in Sources */,
 				E271162D25A4859B00B6ACA6 /* ContentView.swift in Sources */,
 				E271162A25A4859900B6ACA6 /* StatusView.swift in Sources */,
 				E271163025A485B600B6ACA6 /* Const.swift in Sources */,

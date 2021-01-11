@@ -42,4 +42,14 @@ final class IGStoryButtonTests: XCTestCase {
         XCTAssertEqual(storyButton.colorType, .custom(colors: [.red, .green]))
         XCTAssertNotEqual(storyButton.colorType, .custom(colors: [.red]))
     }
+    
+    func testButtonEventIsCatched() {
+        let storyButton = IGStoryButton()
+        let viewController = MockViewController()
+        storyButton.delegate = viewController
+        storyButton.delegate?.didTapped()
+        storyButton.delegate?.didLongPressed()
+        XCTAssertTrue(viewController.isTapped)
+        XCTAssertTrue(viewController.isLongPressed)
+    }
 }
