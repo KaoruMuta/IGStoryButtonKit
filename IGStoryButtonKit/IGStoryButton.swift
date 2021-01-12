@@ -142,7 +142,7 @@ public protocol IGStoryButtonDelegate: class {
     
     override public func layoutSubviews() {
         super.layoutSubviews()
-        assert(frame.width == frame.height, "The size of width and height are required to be equal")
+        validate(width: frame.width, height: frame.height)
         // arrange layout
         configureLayout()
     }
@@ -161,6 +161,12 @@ public protocol IGStoryButtonDelegate: class {
         
         update(by: displayType)
         update(by: colorType)
+    }
+}
+
+public extension IGStoryButton {
+    func validate(width: CGFloat, height: CGFloat) {
+        precondition(width == height, "The size of width and height are required to be equal")
     }
 }
 
