@@ -18,6 +18,14 @@ final class IGStoryButtonTests: XCTestCase {
         XCTAssertEqual(storyButton.frame.height, 100)
     }
     
+    func testExpectPreconditionFailure() {
+        let frame = CGRect(x: 0, y: 0, width: 100, height: 80)
+        let storyButton = IGStoryButton(frame: frame, displayType: .none, colorType: .clear, image: UIImage())
+        expectPreconditionFailure(expectedMessage: "The size of width and height are required to be equal") {
+            storyButton.validate(width: frame.width, height: frame.height)
+        }
+    }
+    
     func testDisplayTypeAndColorTypeIsValid() {
         let storyButton = IGStoryButton(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
         let mockImage: UIImage? = .init()
