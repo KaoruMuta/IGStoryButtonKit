@@ -132,6 +132,14 @@
 			path = Extension;
 			sourceTree = "<group>";
 		};
+		E2490E3325AD4893000DA950 /* Mock */ = {
+			isa = PBXGroup;
+			children = (
+				E2599B9225AC5D050093E009 /* MockViewController.swift */,
+			);
+			path = Mock;
+			sourceTree = "<group>";
+		};
 		E271161B25A458D200B6ACA6 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -164,6 +172,7 @@
 		E2C63ADE25AD3D1E00F76AD7 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
+				E2490E3325AD4893000DA950 /* Mock */,
 				E2490E2E25AD4063000DA950 /* Extension */,
 				E2C63ADF25AD3D6300F76AD7 /* Precondition.swift */,
 			);
@@ -210,7 +219,6 @@
 			children = (
 				E2C63ADE25AD3D1E00F76AD7 /* Helper */,
 				E2CBC2F7259CD73700B92BA4 /* IGStoryButtonTest.swift */,
-				E2599B9225AC5D050093E009 /* MockViewController.swift */,
 				E2CBC2F9259CD73700B92BA4 /* Info.plist */,
 			);
 			path = IGStoryButtonKitTests;
