@@ -3,7 +3,7 @@
 </p>
 
 ![Swift-version](https://img.shields.io/badge/swift-5.3%2B-orange)
-![CocoaPods](https://img.shields.io/badge/pod-v1.0.0-red)
+![CocoaPods](https://img.shields.io/badge/pod-v1.0.1-red)
 ![License](https://img.shields.io/github/license/KaoruMuta/IGStoryButtonKit)
 
 # Introduction
@@ -85,7 +85,10 @@ end
 ```
 
 ## Carthage
-Coming soon
+Add following to your Cartfile and execute `carthage bootstrap --platform iOS --use-xcframeworks`, and finally import xcframeworks in your project
+```
+github "KaoruMuta/IGStoryButtonKit"
+```
 
 ## Swift Package Manager
 Enter this: `https://github.com/KaoruMuta/IGStoryButtonKit` as Swift Package
