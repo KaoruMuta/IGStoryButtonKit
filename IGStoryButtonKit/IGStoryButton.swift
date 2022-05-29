@@ -8,7 +8,7 @@
 import UIKit
 
 /// By conforming this delegate, tap event and long pressed event are detected
-public protocol IGStoryButtonDelegate: class {
+public protocol IGStoryButtonDelegate: AnyObject {
     /// In this function, any action you want should be operated on tap event
     func didTapped()
     /// In this function, any action you want should be operated on long press event
