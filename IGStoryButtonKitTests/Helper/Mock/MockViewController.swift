@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import IGStoryButtonKit
 
 final class MockViewController: UIViewController, IGStoryButtonDelegate {
     var isTapped: Bool = false
